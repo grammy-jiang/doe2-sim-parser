@@ -156,3 +156,4 @@ fabric.properties
 .idea/
 
 example_parse_result/
+/example_usage/target/

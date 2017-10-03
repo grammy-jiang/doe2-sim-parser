@@ -2,8 +2,6 @@ import logging
 import pprint
 
 from doe2_sim_parser import Path_, split_sim
-from doe2_sim_parser import SIM
-from doe2_sim_parser.sim_parser import parse_sim
 
 logger = logging.getLogger(__name__)
 
@@ -13,15 +11,13 @@ if __name__ == '__main__':
     path_sim: Path_ = r'../tests/test case - Baseline Design.SIM'
     path_xlsx: Path_ = r'../tests/test case.xlsx'
 
-    sim: SIM = parse_sim(path_sim)
-
     # split SIM
     target_folder: Path_ = r'target'
 
     result = split_sim(path_sim, target_folder=target_folder)
 
-    result = split_sim(path_sim, target_folder=target_folder,
-                       target_reports=['BEPS', 'BEPU'])
+    # result = split_sim(path_sim, target_folder=target_folder,
+    #                    target_reports=['BEPS', 'BEPU'])
 
     pp.pprint(result)
 

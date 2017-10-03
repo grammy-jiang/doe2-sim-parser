@@ -46,22 +46,34 @@ def split_sim(path_sim: Path_,
 
     buffer: Dict[str, List] = {}
 
-    for report in sim.reports:  # type: Report
+    for report in sim.normal_reports:  # type: Report
         if report.code in target_reports:
             if report.code not in buffer:
                 buffer.update({report.code: []})
             buffer[report.code].append(report)
 
-    return dict(starmap(
-        lambda file, code, reports: (code, write_sim(file, code, reports)),
-        starmap(lambda code, reports: (
-            target_folder / '{SIM} - {code} {name}.SIM'.format(
-                SIM=path_sim.stem,
-                code=code,
-                name=target_reports[code].replace('/', '_')),
-            code,
-            reports),
-                buffer.items())))
+    return dict(
+        (*starmap(
+            lambda file, code, reports: (code, write_sim(file, reports)),
+            starmap(lambda code, reports: (
+                target_folder / '{SIM} - {code} {name}.SIM'.format(
+                    SIM=path_sim.stem,
+                    code=code,
+                    name=target_reports[code].replace('/', '_')),
+                code,
+                reports),
+                    buffer.items())),
+         ('normal_reports', write_sim(
+             file=target_folder / '{SIM} - {code}.SIM'.format(
+                 SIM=path_sim.stem,
+                 code='normal_reports'),
+             reports=sim.normal_reports)),
+         ('hourly_reports', write_sim(
+             file=target_folder / '{SIM} - {code}.SIM'.format(
+                 SIM=path_sim.stem,
+                 code='hourly_reports'),
+             reports=sim.hourly_reports)))
+    )
 
 
 def transfer_sim2xlsx(path_sim: Path_, path_xlsx: Path_):
