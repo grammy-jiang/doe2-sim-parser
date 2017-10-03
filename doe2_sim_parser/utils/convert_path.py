@@ -21,8 +21,7 @@ path_converter: Dict[Path_, Callable] = {
     pathlib.Path: lambda x: x,
     pathlib.PosixPath: lambda x: x,
     pathlib.PurePath: lambda x: x,
-    pathlib.WindowsPath: lambda x: x
-}
+    pathlib.WindowsPath: lambda x: x}
 
 
 def convert_path(path: Path_):

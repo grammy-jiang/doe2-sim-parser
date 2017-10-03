@@ -4,7 +4,6 @@ from itertools import starmap
 from typing import Generator, Tuple
 from typing import List
 
-from .settings import TARGET_REPORTS
 from .utils import Path
 from .utils import Path_
 from .utils import convert_path
@@ -58,7 +57,7 @@ WEATHER\sFILE\-\s
     path: Path = convert_path(path)
     reports: Tuple[Report] = tuple(
         starmap(lambda x, y: Report(code=x.group('code'),
-                                    name=x.group('name'),
+                                    name=x.group('name').strip(),
                                     report=y),
                 filter(lambda x: x[0],
                        map(lambda x: (report_title.search(x[2]), x),
@@ -67,10 +66,6 @@ WEATHER\sFILE\-\s
     return SIM(path=path, reports=reports)
 
 
-def write_sim(report_obj: Report, path: Path):
-    with open('{SIM} - {code} {name}.SIM'.format(
-            SIM=path.stem,
-            code=report_obj.code,
-            name=TARGET_REPORTS[report_obj.code]).replace(r'/', '_'),
-              'a') as f:
-        f.write(''.join(report_obj.report))
+def write_sim(file: Path_, code: str, reports: List[Report]):
+    file: Path = convert_path(file)
+    return file.write_text(''.join(map(lambda x: ''.join(x.report), reports)))
