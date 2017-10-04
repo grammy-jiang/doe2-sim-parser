@@ -6,7 +6,7 @@ from doe2_sim_parser.utils import convert_path
 
 if __name__ == '__main__':
     path: Path_ = (
-        r"tests/"
+        r"example_usage/target/"
         r"test case - Baseline Design - BEPS Building Energy Performance.SIM")
 
     wb = Workbook()

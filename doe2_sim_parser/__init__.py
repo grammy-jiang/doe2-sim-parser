@@ -1,20 +1,21 @@
 import pprint
+from collections import defaultdict
 from itertools import starmap
-from typing import Dict, List
+from typing import Dict
 from typing import Iterable
 
 from .settings import TARGET_REPORTS
-from .sim_parser import Report
-from .sim_parser import SIM
-from .sim_parser import parse_sim
-from .sim_parser import write_sim
+from .parse_sim import Report
+from .parse_sim import SIM
+from .parse_sim import parse_sim
+from .parse_sim import write_sim
 from .utils.convert_path import Path
 from .utils.convert_path import Path_
 from .utils.convert_path import convert_path
 
 pp = pprint.PrettyPrinter(indent=4, width=120)
 
-_TARGET_REPORTS = dict(TARGET_REPORTS)
+_TARGET_REPORTS = dict(map(lambda x: x[1:3], TARGET_REPORTS))
 
 
 def split_sim(path_sim: Path_,
@@ -25,7 +26,8 @@ def split_sim(path_sim: Path_,
     :param path_sim:
     :param target_folder:
     :param target_reports:
-    :return:
+    :return: a dictionary with report code as key, the size of the report as
+    value
     """
     path_sim: Path = convert_path(path_sim)
     target_folder: Path = convert_path(target_folder)
@@ -44,12 +46,10 @@ def split_sim(path_sim: Path_,
 
     sim: SIM = parse_sim(path_sim)
 
-    buffer: Dict[str, List] = {}
+    buffer = defaultdict(list)
 
     for report in sim.normal_reports:  # type: Report
         if report.code in target_reports:
-            if report.code not in buffer:
-                buffer.update({report.code: []})
             buffer[report.code].append(report)
 
     return dict(
@@ -79,3 +79,7 @@ def split_sim(path_sim: Path_,
 def transfer_sim2xlsx(path_sim: Path_, path_xlsx: Path_):
     path_sim: Path = convert_path(path_sim)
     path_xlsx: Path = convert_path(path_xlsx)
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions

@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 pp = pprint.PrettyPrinter(indent=4, width=120)
 
 if __name__ == '__main__':
-    path_sim: Path_ = r'../tests/test case - Baseline Design.SIM'
+    path_sim: Path_ = r'../tests/test case.SIM'
     path_xlsx: Path_ = r'../tests/test case.xlsx'
 
     # split SIM
