@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 from pathlib import Path
 from typing import Generator
 from typing import List
@@ -80,10 +81,7 @@ BDL\sRUN\s+
 
 def parse_sim(path: Path_) -> SIM:
     path: Path = convert_path(path)
-
-    dict_ = {'normal_report': [],
-             'hourly_report': []}
-
+    dict_ = defaultdict(list)
     for report in read_sim(path):  # type: Report
         dict_[report.type_].append(report)
 
