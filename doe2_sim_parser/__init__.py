@@ -4,14 +4,18 @@ from itertools import starmap
 from typing import Dict
 from typing import Iterable
 
-from .settings import TARGET_REPORTS
+from ._version import get_versions
 from .parse_sim import Report
 from .parse_sim import SIM
 from .parse_sim import parse_sim
-from .parse_sim import write_sim
+from .settings import TARGET_REPORTS
 from .utils.convert_path import Path
 from .utils.convert_path import Path_
 from .utils.convert_path import convert_path
+from .write_sim import write_sim
+
+__version__ = get_versions()['version']
+del get_versions
 
 pp = pprint.PrettyPrinter(indent=4, width=120)
 
@@ -79,7 +83,3 @@ def split_sim(path_sim: Path_,
 def transfer_sim2xlsx(path_sim: Path_, path_xlsx: Path_):
     path_sim: Path = convert_path(path_sim)
     path_xlsx: Path = convert_path(path_xlsx)
-
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions

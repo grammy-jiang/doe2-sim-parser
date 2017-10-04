@@ -1,11 +1,14 @@
+import os
 from pathlib import Path
 from unittest import TestCase
 
-from doe2_sim_parser.parse_sim import read_sim
 from doe2_sim_parser.parse_sim import parse_report
 from doe2_sim_parser.parse_sim import parse_sim
+from doe2_sim_parser.parse_sim import read_sim
 from doe2_sim_parser.utils.data_types import Report
 from doe2_sim_parser.utils.data_types import SIM
+
+CWD = Path(os.getcwd())
 
 
 class ParseReportTest(TestCase):
@@ -97,14 +100,23 @@ class ParseReportTest(TestCase):
 
 class ReadSIMTest(TestCase):
     def test_read_sim(self):
-        path = Path('tests/test case.SIM')
+        if CWD.stem == 'tests':
+            path = CWD / 'test case.SIM'
+        else:
+            path = CWD / 'tests' / 'test case.SIM'
+        # path = cwd / Path(
+        #     'tests/test case.SIM'
+        # )
         for report in read_sim(path):
             self.assertIsInstance(report, Report)
 
 
 class ParseSIMTest(TestCase):
     def test_parse_sim(self):
-        path = 'tests/test case.SIM'
+        if CWD.stem == 'tests':
+            path = CWD / 'test case.SIM'
+        else:
+            path = CWD / 'tests' / 'test case.SIM'
 
         sim = parse_sim(path)
         self.assertIsInstance(sim, SIM)

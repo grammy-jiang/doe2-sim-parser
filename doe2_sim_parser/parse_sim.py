@@ -81,19 +81,11 @@ BDL\sRUN\s+
 def parse_sim(path: Path_) -> SIM:
     path: Path = convert_path(path)
 
-    _normal_reports: List[Report] = []
-    _hourly_reports: List[Report] = []
+    dict_ = {'normal_report': [],
+             'hourly_report': []}
 
     for report in read_sim(path):  # type: Report
-        if report.type_ == 'normal_report':
-            _normal_reports.append(report)
-        elif report.type_ == 'hourly_report':
-            _hourly_reports.append(report)
+        dict_[report.type_].append(report)
 
-    return SIM(path=path, normal_reports=tuple(_normal_reports),
-               hourly_reports=tuple(_hourly_reports))
-
-
-def write_sim(file: Path_, reports: List[Report]):
-    file: Path = convert_path(file)
-    return file.write_text(''.join(map(lambda x: ''.join(x.report), reports)))
+    return SIM(path=path, normal_reports=tuple(dict_['normal_report']),
+               hourly_reports=tuple(dict_['hourly_report']))
