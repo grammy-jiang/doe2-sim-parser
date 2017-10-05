@@ -10,35 +10,47 @@ from .utils import convert_path
 from .utils.data_types import Report
 from .utils.data_types import SIM
 
-
-def parse_report(report: Tuple[str]) -> Report:
-    report_title = re.compile(
-        r'''
+pattern_report_title = re.compile(
+    r'''
 REPORT-\s
 (?P<code>[A-Z\-]{4})\s
 (?P<name>.+)
 WEATHER\sFILE\-\s
 (?P<weather>[^\s].+[^\s])\s+
 ''',
-        flags=re.VERBOSE)
+    flags=re.VERBOSE)
 
-    report_hourly_report = re.compile(
-        r'''
+pattern_report_hourly_report = re.compile(
+    r'''
 HOURLY\sREPORT\-\sHourly\sReport\s+
 HVAC\s+
 WEATHER\sFILE\-\sEPW\sMACAU,\-,MAC\s+
 Pg:\s+
 \d+\s\-\s+\d
 ''',
-        flags=re.VERBOSE)
+    flags=re.VERBOSE)
 
-    result = report_title.search(report[2])
+pattern_report_head = re.compile(
+    r'''
+^
+(?P<model>.+?)\s+
+(?P<engine>DOE-2\..+?)\s+
+(?P<date>[\/\d]+)\s+
+(?P<time>\d{2}:\d{2}:\d{2})\s+
+BDL\sRUN\s+
+(?P<run_time>\d+)
+''',
+    flags=re.VERBOSE)
+
+
+def parse_report(report: Tuple[str]) -> Report:
+    result = pattern_report_title.search(report[2])
     if result:
         return Report(type_='normal_report',
                       code=result.group('code'),
                       name=result.group('name').strip(),
                       report=report)
-    elif report_hourly_report.search(report[2]):
+    elif pattern_report_hourly_report.search(report[2]):
         return Report(type_='hourly_report',
                       code=None,
                       name=None,
@@ -53,23 +65,10 @@ def read_sim(path: Path) -> Generator[Report, None, None]:
     :param path:
     :return:
     """
-
-    report_head = re.compile(
-        r'''
-^
-(?P<model>.+?)\s+
-(?P<engine>DOE-2\..+?)\s+
-(?P<date>[\/\d]+)\s+
-(?P<time>\d{2}:\d{2}:\d{2})\s+
-BDL\sRUN\s+
-(?P<run_time>\d+)
-''',
-        flags=re.VERBOSE)
-
     report: List[str] = []
     with path.open() as f:
         for line in f.readlines():
-            if report_head.search(line):
+            if pattern_report_head.search(line):
                 if report:
                     yield parse_report(tuple(report))
                 report: List[str] = [line]
