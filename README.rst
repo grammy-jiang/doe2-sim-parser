@@ -18,7 +18,7 @@ DOE2-SIM-Parser
    :target: http://codecov.io/github/grammy-jiang/doe2-sim-parser?branch=master
    :alt: Coverage report
 
-.. .. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
+.. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
    :target: https://github.com/grammy-jiang/doe2-sim-parser
    :alt: Downloads
 
@@ -28,6 +28,12 @@ DOE2-SIM-Parser
 
 Overview
 ========
+
+This project provides the DOE2 sim report splitting and parsing:
+
+- split the sim report into pieces by the reports' names
+- parse the sim report from pure text to csv file (comma-separated values),
+  based on the requirement (configuration)
 
 Requirements
 ============

@@ -1,20 +1,14 @@
-from pathlib import Path
-from pathlib import PosixPath
-from pathlib import WindowsPath
-from typing import Callable
-from typing import Dict
+from pathlib import Path, PosixPath, WindowsPath
+from typing import Callable, Dict
 
-from .data_types import Path_
+from doe2_sim_parser.utils.data_types import Path as _Path
 
-path_converter: Dict[Path_, Callable] = {
+path_converter: Dict[Path, Callable] = {
     str: lambda x: Path(x),
     PosixPath: lambda x: x,
-    WindowsPath: lambda x: x}
+    WindowsPath: lambda x: x,
+}
 
 
-def convert_path(path: Path_) -> Path:
-    type_ = type(path)
-    if type_ in path_converter:
-        return path_converter[type_](path)
-    else:
-        raise TypeError(type_)
+def convert_path(path: _Path) -> Path:
+    return path_converter.get(type(path))(path)
