@@ -157,3 +157,5 @@ fabric.properties
 
 example_parse_result/
 /example_usage/target/
+
+Pipfile.lock
