@@ -1,34 +1,33 @@
-import pprint
 import re
 from collections import namedtuple
-from typing import Generator, Iterable, List, Tuple
+from typing import List
+
+from doe2_sim_parser.utils import chunks, parse_header
+from doe2_sim_parser.utils.data_types import SliceFunc
 
 Meter = namedtuple("Meter", ["name", "type_"])
 Categories = [[
-    "METER", "TYPE", "UNIT",
-    "LIGHTS", "TASK\nLIGHTS", "MISC\nEQUIP", "SPACE\nHEATING", "SPACE\nCOOLING",
-    "HEAT\nREJECT", "PUMPS\n& AUX", "VENT\nFANS", "REFRIG\nDISPLAY",
-    "HT PUMP\nSUPPLEN", "DOMEST\nHOT WTR", "EXT\nUSAGE", "TOTAL",
+    "METER",
+    "TYPE",
+    "UNIT",
+    "LIGHTS",
+    "TASK\nLIGHTS",
+    "MISC\nEQUIP",
+    "SPACE\nHEATING",
+    "SPACE\nCOOLING",
+    "HEAT\nREJECT",
+    "PUMPS\n& AUX",
+    "VENT\nFANS",
+    "REFRIG\nDISPLAY",
+    "HT PUMP\nSUPPLEN",
+    "DOMEST\nHOT WTR",
+    "EXT\nUSAGE",
+    "TOTAL",
 ]]
 
-PATTERN_REPORT_HEAD = re.compile(
-    r"""
-^\x0c(?P<model>.+?)\s+(?P<engine>DOE-2\..+?)\s+(?P<date>[\/\d]+)\s+(?P<time>\d{2}:\d{2}:\d{2})\s+(?P<bdl_run>BDL\sRUN)\s+(?P<run_time>\d+)
-""",
-    flags=re.VERBOSE,
-)
-
-PATTERN_REPORT_TITLE = re.compile(
-    r"""
-^(?P<report>REPORT)-\s(?P<report_name>.+?)\s+(?P<weather>WEATHER\sFILE)-\s(?P<weather_file>.+?)\s+$
-""",
-    flags=re.VERBOSE
-)
-
-pattern_meter = re.compile(
+PATTERN_METER = re.compile(
     r"""(?P<name>.+)\s{2}(?P<type_>ELECTRICITY|NATURAL\-GAS)""",
-    flags=re.VERBOSE,
-)
+    flags=re.VERBOSE)
 
 PATTERN_NO_BY_CATEGORY = re.compile(
     r"""
@@ -51,54 +50,26 @@ PATTERN_NO_BY_CATEGORY = re.compile(
     flags=re.VERBOSE,
 )
 
-pattern_total_energy = re.compile(
+PATTER_TOTAL_ENERGY = re.compile(
     r"""
 \s+
-(?P<name>TOTAL\sSITE\sENERGY|TOTAL\sSOURCE\sENERGY)
-\s+
-(?P<value>\d+\.\d+)
-\s
-(?P<unit>MBTU)
-\s+
-(?P<value_per_gross_area>\d+\.\d+)
-\s+
-(?P<unit_per_gross_area>KBTU\/SQFT\-YR\sGROSS\-AREA)
-\s+
-(?P<value_per_net_area>\d+\.\d+)
-\s+
+(?P<name>TOTAL\sSITE\sENERGY|TOTAL\sSOURCE\sENERGY)\s+
+(?P<value>\d+\.\d+)\s
+(?P<unit>MBTU)\s+
+(?P<value_per_gross_area>\d+\.\d+)\s+
+(?P<unit_per_gross_area>KBTU\/SQFT\-YR\sGROSS\-AREA)\s+
+(?P<value_per_net_area>\d+\.\d+)\s+
 (?P<unit_per_net_area>KBTU\/SQFT\-YR\sNET\-AREA)
 """,
     flags=re.VERBOSE,
 )
 
-pattern_percent_and_hours = re.compile(
-    r"""
-\s+
-(?P<name>.+?)
-\s+
-=
-\s+
-(?P<value>\d+[.\d]*)
-""",
-    flags=re.VERBOSE,
-)
-pp = pprint.PrettyPrinter(indent=4, width=180)
-
-
-def chunks(list_: Iterable, n: int) -> Generator[List, None, None]:
-    if list_:
-        yield list_[:n]
-        yield from chunks(list_[n:], n)
-
-
-def parse_header(lines: str):
-    return (list(PATTERN_REPORT_HEAD.search(lines[0]).groupdict().values()),
-            list(PATTERN_REPORT_TITLE.search(lines[2]).groupdict().values()))
+PATTERN_PERCENT_AND_HOURS = re.compile(
+    r"""\s+(?P<name>.+?)\s+=\s+(?P<value>\d+[.\d]*)""", flags=re.VERBOSE)
 
 
 def parse_meter(line: str):
-    _ = pattern_meter.search(line)
-    return list(_.groupdict().values())
+    return list(PATTERN_METER.search(line).groupdict().values())
 
 
 def parse_no_by_category(line: str):
@@ -106,10 +77,11 @@ def parse_no_by_category(line: str):
 
 
 def parse_content(lines: List[str]):
-    return list(map(
-        lambda x: [*parse_meter(x[0]), *parse_no_by_category(x[1])],
-        chunks(list(filter(lambda x: x.strip(), lines)), 2),
-    ))
+    return list(
+        map(
+            lambda x: [*parse_meter(x[0]), *parse_no_by_category(x[1])],
+            chunks(list(filter(lambda x: x.strip(), lines)), 2),
+        ))
 
 
 def parse_sum(lines: List[str]):
@@ -117,45 +89,41 @@ def parse_sum(lines: List[str]):
 
 
 def parse_total(lines: List[str]):
-    return tuple(map(lambda x: list(pattern_total_energy.search(x).groups()), lines))
+    return tuple(
+        map(lambda x: list(PATTER_TOTAL_ENERGY.search(x).groups()), lines))
 
 
 def parse_percent(lines: List[str]):
-    return tuple(list(
-        map(lambda x: list(pattern_percent_and_hours.search(x).groupdict().values()),
-            lines)
-    ))
+    return tuple(
+        list(
+            map(
+                lambda x: list(
+                    PATTERN_PERCENT_AND_HOURS.search(x).groupdict().values()
+                ),
+                lines,
+            )
+        )
+    )
 
-
-SliceFunc = namedtuple("SliceFunc", ["name", "slice", "func_parse"])
 
 SLICES_BEPS = (
+    SliceFunc(name="header", slice=slice(0, 3), func_parse=parse_header),
     SliceFunc(
-        name="header", slice=slice(0, 3), func_parse=parse_header
-    ),
+        name="categories", slice=slice(5, 7), func_parse=lambda x: Categories),
+    SliceFunc(name="content", slice=slice(9, -17), func_parse=parse_content),
+    SliceFunc(name="summary", slice=slice(-15, -14), func_parse=parse_sum),
+    SliceFunc(name="total", slice=slice(-11, -9), func_parse=parse_total),
+    SliceFunc(name="percent", slice=slice(-8, -4), func_parse=parse_percent),
     SliceFunc(
-        name="categories", slice=slice(5, 7), func_parse=lambda x: Categories
-    ),
-    SliceFunc(
-        name="content", slice=slice(9, -17), func_parse=parse_content
-    ),
-    SliceFunc(
-        name="summary", slice=slice(-15, -14), func_parse=parse_sum
-    ),
-    SliceFunc(
-        name="total", slice=slice(-11, -9), func_parse=parse_total
-    ),
-    SliceFunc(
-        name="percent", slice=slice(-8, -4), func_parse=parse_percent
-    ),
-    SliceFunc(
-        name="note", slice=slice(-3, -2), func_parse=lambda x: [[x[0].strip()]]
-    ),
+        name="note",
+        slice=slice(-3, -2),
+        func_parse=lambda x: [[x[0].strip()]]),
 )
 
 
 def parse_beps(report: List[str]):
     beps = list()
+
     for slice_ in SLICES_BEPS:
         beps.extend(slice_.func_parse(report[slice_.slice]))
 

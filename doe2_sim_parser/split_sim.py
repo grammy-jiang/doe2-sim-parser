@@ -1,30 +1,10 @@
-import re
 from collections import defaultdict
 from typing import Generator, List, Tuple
 
+from doe2_sim_parser.utils import (
+    PATTERN_REPORT_HEAD, PATTERN_REPORT_HOURLY_REPORT, PATTERN_REPORT_TITLE)
 from doe2_sim_parser.utils.convert_path import convert_path
 from doe2_sim_parser.utils.data_types import SIM, Path, Report
-
-PATTERN_REPORT_TITLE = re.compile(
-    r"""
-REPORT-\s(?P<code>[A-Z\-]{4})\s(?P<name>.+)WEATHER\sFILE\-\s(?P<weather>[^\s].+[^\s])\s+
-""",
-    flags=re.VERBOSE,
-)
-
-PATTERN_REPORT_HOURLY_REPORT = re.compile(
-    r"""
-HOURLY\sREPORT\-\sHourly\sReport\s+HVAC\s+WEATHER\sFILE\-\sEPW\sMACAU,\-,MAC\s+Pg:\s+\d+\s\-\s+\d
-""",
-    flags=re.VERBOSE,
-)
-
-PATTERN_REPORT_HEAD = re.compile(
-    r"""
-^\x0c(?P<model>.+?)\s+(?P<engine>DOE-2\..+?)\s+(?P<date>[\/\d]+)\s+(?P<time>\d{2}:\d{2}:\d{2})\s+BDL\sRUN\s+(?P<run_time>\d+)
-""",
-    flags=re.VERBOSE,
-)
 
 
 def parse_report(report: Tuple[str]) -> Report:
@@ -34,6 +14,7 @@ def parse_report(report: Tuple[str]) -> Report:
     :return:
     """
     result = PATTERN_REPORT_TITLE.search(report[2])
+
     if result:
         return Report(
             type_="normal_report",
@@ -77,6 +58,7 @@ def split_sim(path: Path) -> SIM:
     """
     path: Path = convert_path(path)
     dict_ = defaultdict(list)
+
     for report in read_sim(path):  # type: Report
         dict_[report.type_].append(report)
 

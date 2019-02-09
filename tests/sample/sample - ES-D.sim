@@ -1,0 +1,20 @@
+sample                                                                           DOE-2.2-48z    2/03/2019    13:58:04  BDL RUN  1
+                                                                                                                        
+REPORT- ES-D Energy Cost Summary                                                            WEATHER FILE- CHICAGO, IL         
+---------------------------------------------------------------------------------------------------------------------------------
+
+                                                                           METERED             TOTAL      VIRTUAL
+                                                                            ENERGY            CHARGE         RATE   RATE USED
+UTILITY-RATE                       RESOURCE           METERS              UNITS/YR               ($)     ($/UNIT)   ALL YEAR?
+--------------------------------   ----------------   -----------   -------------------   ----------   ----------   ---------
+
+SCE GS-2 Elec Rate                 ELECTRICITY        EM1              211768. KWH            35072.       0.1656      YES
+
+SoCalGas GN-10 Gas Rate            NATURAL-GAS        FM1                3827. THERM           2617.       0.6837      YES
+
+                                                                                          ==========
+                                                                                              37689.
+
+
+                                                             ENERGY COST/GROSS BLDG AREA:      1.51
+                                                               ENERGY COST/NET BLDG AREA:      1.51
