@@ -11,3 +11,6 @@ install:
   - pip install -U tox
 
 script: tox
+
+after_success:
+  - codecov
