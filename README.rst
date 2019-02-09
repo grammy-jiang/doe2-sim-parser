@@ -14,8 +14,8 @@ DOE2-SIM-Parser
    :target: https://pypi.python.org/pypi/doe2-sim-parser
    :alt: Wheel Status
 
-.. image:: https://img.shields.io/codecov/c/github/grammy-jiang/doe2-sim-parser/master.svg
-   :target: http://codecov.io/github/grammy-jiang/doe2-sim-parser?branch=master
+.. image:: https://codecov.io/gh/grammy-jiang/doe2-sim-parser/branch/draft/graph/badge.svg
+   :target: https://codecov.io/gh/grammy-jiang/doe2-sim-parser
    :alt: Coverage report
 
 .. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
