@@ -1,14 +1,12 @@
 import pprint
 import re
 from collections import namedtuple
-from typing import Generator, Iterable, List, Tuple
+from typing import Generator, Iterable, List
 
 Meter = namedtuple("Meter", ["name", "type_"])
 Categories = [[
-    "METER", "TYPE", "UNIT",
-    "LIGHTS", "TASK\nLIGHTS", "MISC\nEQUIP", "SPACE\nHEATING", "SPACE\nCOOLING",
-    "HEAT\nREJECT", "PUMPS\n& AUX", "VENT\nFANS", "REFRIG\nDISPLAY",
-    "HT PUMP\nSUPPLEN", "DOMEST\nHOT WTR", "EXT\nUSAGE", "TOTAL",
+    "UTILITY-RATE", "RESOURCE", "METERS", "METERED\nENERGY\nUNITS/YR",
+    "TOTAL\nCHARGE\n($)", "VIRTUAL\nRATE\n($/UNIT)", "RATE USED\nALL YEAR?"
 ]]
 
 PATTERN_REPORT_HEAD = re.compile(
@@ -32,22 +30,8 @@ pattern_meter = re.compile(
 
 PATTERN_NO_BY_CATEGORY = re.compile(
     r"""
-^\s+
-(?P<unit>[A-Z]+)\s+
-(?P<LIGHTS>[\d.]+)\s+
-(?P<TASK_LIGHTS>[\d.]+)\s+
-(?P<MISC_EQUIP>[\d.]+)\s+
-(?P<SPACE_HEATING>[\d.]+)\s+
-(?P<SPACE_COOLING>[\d.]+)\s+
-(?P<HEAT_REJECT>[\d.]+)\s+
-(?P<PUMPS_AUX>[\d.]+)\s+
-(?P<VENT_FANS>[\d.]+)\s+
-(?P<REFRIG_DISPLAY>[\d.]+)\s+
-(?P<HT_PUMP_SUPPLEM>[\d.]+)\s+
-(?P<DOMEST_HOT_WTR>[\d.]+)\s+
-(?P<EXT_USAGE>[\d.]+)\s+
-(?P<TOTAL>[\d.]+)
-   """,
+(?P<utility_rate>.+?)\s+(?P<resource>(ELECTRICITY|NATURAL-GAS))\s+(?P<meter>.+?)\s+(?P<metered_energy_units>[\d\.]+)\s+(?P<unit>[A-Z]+)\s+(?P<total_charge>[\d\.]+)\s+(?P<virtual_rate>[\d\.]+)\s+(?P<rate_used_all_year>(YES|NO))
+  """,
     flags=re.VERBOSE,
 )
 
@@ -71,17 +55,13 @@ pattern_total_energy = re.compile(
     flags=re.VERBOSE,
 )
 
-pattern_percent_and_hours = re.compile(
+PATTERN_AVERAGE = re.compile(
     r"""
-\s+
-(?P<name>.+?)
-\s+
-=
-\s+
-(?P<value>\d+[.\d]*)
+^\s+(?P<name>ENERGY\sCOST/(GROSS|NET)\sBLDG\sAREA):\s+(?P<value>[\d\.]+)$
 """,
     flags=re.VERBOSE,
 )
+
 pp = pprint.PrettyPrinter(indent=4, width=180)
 
 
@@ -101,62 +81,62 @@ def parse_meter(line: str):
     return list(_.groupdict().values())
 
 
-def parse_no_by_category(line: str):
-    return PATTERN_NO_BY_CATEGORY.search(line).groupdict().values()
-
-
 def parse_content(lines: List[str]):
-    return list(map(
-        lambda x: [*parse_meter(x[0]), *parse_no_by_category(x[1])],
-        chunks(list(filter(lambda x: x.strip(), lines)), 2),
-    ))
+    content = list()
+    for line in filter(lambda x: x.strip(), lines):
+        content.append(
+            list(PATTERN_NO_BY_CATEGORY.search(line).groupdict().values()))
+
+    return content
 
 
 def parse_sum(lines: List[str]):
-    return list(map(lambda x: ["", "", *parse_no_by_category(x)], lines))
+    return [["", "", "", "", "", lines[0].strip()]]
 
 
 def parse_total(lines: List[str]):
-    return tuple(map(lambda x: list(pattern_total_energy.search(x).groups()), lines))
+    return tuple(
+        map(lambda x: list(pattern_total_energy.search(x).groups()), lines))
 
 
-def parse_percent(lines: List[str]):
+def parse_average(lines: List[str]):
     return tuple(list(
-        map(lambda x: list(pattern_percent_and_hours.search(x).groupdict().values()),
+        map(lambda x: list(
+            PATTERN_AVERAGE.search(x).groupdict().values()),
             lines)
     ))
 
 
 SliceFunc = namedtuple("SliceFunc", ["name", "slice", "func_parse"])
 
-SLICES_BEPS = (
+SLICES_ES_D = (
     SliceFunc(
         name="header", slice=slice(0, 3), func_parse=parse_header
     ),
     SliceFunc(
-        name="categories", slice=slice(5, 7), func_parse=lambda x: Categories
+        name="categories", slice=slice(6, 8), func_parse=lambda x: Categories
     ),
     SliceFunc(
-        name="content", slice=slice(9, -17), func_parse=parse_content
+        name="content", slice=slice(10, -6), func_parse=parse_content
     ),
     SliceFunc(
-        name="summary", slice=slice(-15, -14), func_parse=parse_sum
+        name="summary", slice=slice(-5, -4), func_parse=parse_sum
     ),
+    # SliceFunc(
+    #     name="total", slice=slice(-11, -9), func_parse=parse_total
+    # ),
     SliceFunc(
-        name="total", slice=slice(-11, -9), func_parse=parse_total
+        name="percent", slice=slice(-1), func_parse=parse_average
     ),
-    SliceFunc(
-        name="percent", slice=slice(-8, -4), func_parse=parse_percent
-    ),
-    SliceFunc(
-        name="note", slice=slice(-3, -2), func_parse=lambda x: [[x[0].strip()]]
-    ),
+    # SliceFunc(
+    #     name="note", slice=slice(-3, -2), func_parse=lambda x: [[x[0].strip()]]
+    # ),
 )
 
 
-def parse_beps(report: List[str]):
-    beps = list()
-    for slice_ in SLICES_BEPS:
-        beps.extend(slice_.func_parse(report[slice_.slice]))
+def parse_es_d(report: List[str]):
+    es_d = list()
+    for slice_ in SLICES_ES_D:
+        es_d.extend(slice_.func_parse(report[slice_.slice]))
 
-    return beps
+    return es_d

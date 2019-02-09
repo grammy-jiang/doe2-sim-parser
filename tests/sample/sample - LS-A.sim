@@ -1,0 +1,68 @@
+sample                                                                           DOE-2.2-48z    2/03/2019    13:58:04  BDL RUN  1
+                                                                                                                        
+REPORT- LS-A Space Peak Loads Summary                                         DESIGN DAY    WEATHER FILE- CHICAGO, IL         
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+                                  MULTIPLIER   COOLING LOAD        TIME OF   DRY-  WET-    HEATING LOAD        TIME OF   DRY-  WET-
+SPACE NAME                      SPACE  FLOOR      (KBTU/HR)           PEAK   BULB  BULB       (KBTU/HR)           PEAK   BULB  BULB
+
+South Perim Spc (G.S1)             1.     1.         60.129   NOV 17  1 PM   90.F  66.F         -11.519   DEC 21  7 AM   37.F  31.F
+East Perim Spc (G.E2)              1.     1.         49.188   JUL 25 10 AM   83.F  64.F         -11.625   DEC 21  7 AM   37.F  31.F
+North Perim Spc (G.N3)             1.     1.         23.907   JUL 21  5 PM   91.F  67.F         -11.168   DEC 21  7 AM   37.F  31.F
+West Perim Spc (G.W4)              1.     1.         50.684   AUG 30  5 PM   91.F  67.F         -11.970   DEC 21  7 AM   37.F  31.F
+Core Spc (G.C5)                    1.     1.         45.761   JUL 21  5 PM   91.F  67.F           0.000                   0.F   0.F
+South Perim Plnm (G.S6)            1.     1.          1.757   NOV 17  2 PM   91.F  67.F          -1.323   DEC 21  7 AM   37.F  31.F
+East Perim Plnm (G.E7)             1.     1.          1.377   JUL 21 11 AM   85.F  65.F          -1.325   DEC 21  7 AM   37.F  31.F
+North Perim Plnm (G.N8)            1.     1.          0.899   JUL 21  8 PM   88.F  66.F          -1.324   DEC 21  7 AM   37.F  31.F
+West Perim Plnm (G.W9)             1.     1.          1.694   JUL 21  7 PM   89.F  66.F          -1.324   DEC 21  7 AM   37.F  31.F
+Core Plnm (G.C10)                  1.     1.          0.135   NOV  2  7 PM   89.F  66.F          -0.232   DEC 21 12 MDNT 37.F  31.F
+South Perim Spc (T.S11)            1.     1.         63.795   NOV 17  1 PM   90.F  66.F          -9.131   DEC 21  7 AM   37.F  31.F
+East Perim Spc (T.E12)             1.     1.         50.974   JUL 21 10 AM   83.F  64.F          -9.186   DEC 21  7 AM   37.F  31.F
+North Perim Spc (T.N13)            1.     1.         27.782   JUL 21  5 PM   91.F  67.F          -8.643   DEC 21  7 AM   37.F  31.F
+West Perim Spc (T.W14)             1.     1.         53.274   SEP  4  5 PM   91.F  67.F          -9.493   DEC 21  7 AM   37.F  31.F
+Core Spc (T.C15)                   1.     1.         54.236   NOV  2  5 PM   91.F  67.F           0.000                   0.F   0.F
+South Perim Plnm (T.S16)           1.     1.          4.798   AUG  6  4 PM   91.F  67.F          -3.411   DEC 21  7 AM   37.F  31.F
+East Perim Plnm (T.E17)            1.     1.          4.351   JUL 21  4 PM   91.F  67.F          -3.411   DEC 21  7 AM   37.F  31.F
+North Perim Plnm (T.N18)           1.     1.          4.259   JUL 21  5 PM   91.F  67.F          -3.409   DEC 21  7 AM   37.F  31.F
+West Perim Plnm (T.W19)            1.     1.          5.083   JUL 21  6 PM   90.F  67.F          -3.409   DEC 21  7 AM   37.F  31.F
+Core Plnm (T.C20)                  1.     1.         15.989   JUL 21  5 PM   91.F  67.F          -9.954   DEC 21  7 AM   37.F  31.F
+                                                  ---------                                   ---------
+SUM                                                 520.074                                    -111.857
+
+
+BUILDING PEAK                                       384.835   SEP 21  5 PM   91.F  67.F         -82.735   DEC 21  7 AM   37.F  31.F
+sample                                                                           DOE-2.2-48z    2/03/2019    13:58:04  BDL RUN  1
+                                                                                                                        
+REPORT- LS-A Space Peak Loads Summary                                                       WEATHER FILE- CHICAGO, IL         
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+                                  MULTIPLIER   COOLING LOAD        TIME OF   DRY-  WET-    HEATING LOAD        TIME OF   DRY-  WET-
+SPACE NAME                      SPACE  FLOOR      (KBTU/HR)           PEAK   BULB  BULB       (KBTU/HR)           PEAK   BULB  BULB
+
+South Perim Spc (G.S1)             1.     1.         46.630   OCT 25  1 PM   63.F  56.F         -25.677   JAN 27  7 AM   -9.F -10.F
+East Perim Spc (G.E2)              1.     1.         48.328   JUL  1 10 AM   90.F  75.F         -26.259   JAN 27  7 AM   -9.F -10.F
+North Perim Spc (G.N3)             1.     1.         27.452   JUL  1  5 PM   98.F  75.F         -25.312   JAN 27  7 AM   -9.F -10.F
+West Perim Spc (G.W4)              1.     1.         49.359   JUN  4  5 PM   81.F  65.F         -26.758   JAN 27  7 AM   -9.F -10.F
+Core Spc (G.C5)                    1.     1.         46.015   AUG 30  5 PM   94.F  76.F           0.000                   0.F   0.F
+South Perim Plnm (G.S6)            1.     1.          1.348   AUG  3  4 PM   93.F  74.F          -3.015   JAN 27  7 AM   -9.F -10.F
+East Perim Plnm (G.E7)             1.     1.          1.508   JUN  8 12 NOON 88.F  70.F          -3.020   JAN 27  7 AM   -9.F -10.F
+North Perim Plnm (G.N8)            1.     1.          1.133   JUL  1  7 PM   92.F  73.F          -3.021   JAN 27  7 AM   -9.F -10.F
+West Perim Plnm (G.W9)             1.     1.          1.613   JUN  9  6 PM   95.F  72.F          -3.016   JAN 27  7 AM   -9.F -10.F
+Core Plnm (G.C10)                  1.     1.          0.179   JUN 23  3 PM   96.F  75.F          -0.554   JAN 27  7 AM   -9.F -10.F
+South Perim Spc (T.S11)            1.     1.         50.154   OCT 25  1 PM   63.F  56.F         -23.293   JAN 27  7 AM   -9.F -10.F
+East Perim Spc (T.E12)             1.     1.         51.170   JUL  1 10 AM   90.F  75.F         -23.506   JAN 27  7 AM   -9.F -10.F
+North Perim Spc (T.N13)            1.     1.         32.198   JUL  1  5 PM   98.F  75.F         -22.184   JAN 27  7 AM   -9.F -10.F
+West Perim Spc (T.W14)             1.     1.         53.749   JUN  4  5 PM   81.F  65.F         -23.829   JAN 27  7 AM   -9.F -10.F
+Core Spc (T.C15)                   1.     1.         54.259   AUG 30  5 PM   94.F  76.F           0.000                   0.F   0.F
+South Perim Plnm (T.S16)           1.     1.          5.329   JUL  1  4 PM   99.F  75.F          -7.907   JAN 27  8 AM   -7.F  -8.F
+East Perim Plnm (T.E17)            1.     1.          5.086   JUL  1  4 PM   99.F  75.F          -7.906   JAN 27  7 AM   -9.F -10.F
+North Perim Plnm (T.N18)           1.     1.          4.987   JUL  1  4 PM   99.F  75.F          -7.932   JAN 27  8 AM   -7.F  -8.F
+West Perim Plnm (T.W19)            1.     1.          5.289   JUL  1  4 PM   99.F  75.F          -7.931   JAN 27  8 AM   -7.F  -8.F
+Core Plnm (T.C20)                  1.     1.         17.846   JUL  1  4 PM   99.F  75.F         -23.113   JAN 27  8 AM   -7.F  -8.F
+                                                  ---------                                   ---------
+SUM                                                 503.631                                    -264.233
+
+
+BUILDING PEAK                                       368.691   AUG 30  5 PM   94.F  76.F        -196.818   JAN 27  7 AM   -9.F -10.F
