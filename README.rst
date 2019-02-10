@@ -34,15 +34,6 @@ DOE2-SIM-Parser
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: GNU General Public License v3.0
 
-.. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
-   :target: https://github.com/grammy-jiang/doe2-sim-parser
-   :alt: Downloads
-
-.. image:: https://img.shields.io/pypi/dm/doe2-sim-parser.svg
-   :target: https://github.com/grammy-jiang/doe2-sim-parser
-   :alt: Downloads
-
-
 
 Overview
 ========
