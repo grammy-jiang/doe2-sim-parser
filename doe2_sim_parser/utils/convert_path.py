@@ -4,7 +4,7 @@ from typing import Callable, Dict
 from doe2_sim_parser.utils.data_types import Path as _Path
 
 path_converter: Dict[Path, Callable] = {
-    str: lambda x: Path(x),
+    str: Path,
     PosixPath: lambda x: x,
     WindowsPath: lambda x: x,
 }

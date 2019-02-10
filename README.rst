@@ -6,13 +6,12 @@ DOE2-SIM-Parser
    :target: https://pypi.python.org/pypi/doe2-sim-parser
    :alt: PyPI Version
 
-.. image:: https://img.shields.io/travis/grammy-jiang/doe2-sim-parser/master.svg
-   :target: http://travis-ci.org/grammy-jiang/doe2-sim-parser
-   :alt: Build Status
-
 .. image:: https://img.shields.io/badge/wheel-yes-brightgreen.svg
    :target: https://pypi.python.org/pypi/doe2-sim-parser
    :alt: Wheel Status
+
+.. image:: https://travis-ci.org/grammy-jiang/doe2-sim-parser.svg
+    :target: https://travis-ci.org/grammy-jiang/doe2-sim-parser
 
 .. image:: https://codecov.io/gh/grammy-jiang/doe2-sim-parser/branch/draft/graph/badge.svg
    :target: https://codecov.io/gh/grammy-jiang/doe2-sim-parser
