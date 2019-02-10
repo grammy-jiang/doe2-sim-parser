@@ -22,12 +22,17 @@ DOE2-SIM-Parser
    :target: https://www.codacy.com/app/grammy-jiang/doe2-sim-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=grammy-jiang/doe2-sim-parser&amp;utm_campaign=Badge_Grade
    :alt: Codacy Report
 
+.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/shield.svg
+   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
+   :alt: pyup
+
+.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/python-3-shield.svg
+   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
+   :alt: Python 3
+
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: GNU General Public License v3.0
-
-.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/shield.svg
-   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
 
 .. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
    :target: https://github.com/grammy-jiang/doe2-sim-parser
@@ -37,9 +42,6 @@ DOE2-SIM-Parser
    :target: https://github.com/grammy-jiang/doe2-sim-parser
    :alt: Downloads
 
-.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/python-3-shield.svg
-   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
-   :alt: Python 3
 
 
 Overview

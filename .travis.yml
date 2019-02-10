@@ -1,14 +1,13 @@
 language: python
-
 matrix:
   include:
     - python: 3.6
       env: TOXENV=py36
-
 install:
   - pip install -U tox codecov
-
 script: tox
-
 after_success:
   - codecov
+notifications:
+  slack:
+    secure: IgT5Fsg37mDySyqnG4n7fQOSL40TOcDOKjm/udVGi+PWYRR0n1CW12uMdXk69zMVsAr3aY/PqMMQquoaBeK10GiaMKeeSHy3+ZjFyeihbI1HivqPp2p2p6pYG+BK4Ndw7T5XHzxkBMznJdBcllsyedmEpHQRl1ez9HBBXboWCy4Pjdm+gl/PkvSVjb+Ug39m+plpH9epGTMH0qrqRpxw4zur7mlJWF6KHlV3Sf3R1KNBbivtMwlemtVnBEAUS14/qdcHPuPN1UeKgCmxJl6HLpYqgO75pmE1hcITx9ysV1zY5uMrGD7UzBBshfX05OJBjCEvXAeNAyOPk587GIwS470NGxQ7u+qYb0NZn2H5+eovl9wWhOLn5fGaCeGCKp0p0kEAlnLkRfz5vReoE7tHHka+T/zu1NvP+LVtzf9qkbLsqntcHuyHtQX4GUvffg2xwUVX9rnz6HLSdjYtmSfiv8fJn3YZ01OOpPkS+69sXgnxAj8cLzkgmt6Oz6Ka/F8PQpaWDpuRnPdEJgQYGkUtV6GoaWbFaUnXVuBY2FB5zTg2N4o/xFYQBuA4oK41HU4Gb8TpcX1wH4rJ9hKnU8WWcDfkAgbcdPjAW5L+6KUW7vJc6EF+Q9iWWb7I9pcGSqSKrUbYjklO7WgrYk506xoaetEb3kdU8LEd/Limg7fah2Q=
