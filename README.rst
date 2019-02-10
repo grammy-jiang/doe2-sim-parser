@@ -16,7 +16,11 @@ DOE2-SIM-Parser
 
 .. image:: https://codecov.io/gh/grammy-jiang/doe2-sim-parser/branch/draft/graph/badge.svg
    :target: https://codecov.io/gh/grammy-jiang/doe2-sim-parser
-   :alt: Coverage report
+   :alt: Coverage Report
+
+.. image:: https://api.codacy.com/project/badge/Grade/a5740e303e2b456f9d74d0baf0776071
+   :target: https://www.codacy.com/app/grammy-jiang/doe2-sim-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=grammy-jiang/doe2-sim-parser&amp;utm_campaign=Badge_Grade
+   :alt: Codacy Report
 
 .. image:: https://img.shields.io/github/downloads/grammy-jiang/doe2-sim-parser/total.svg
    :target: https://github.com/grammy-jiang/doe2-sim-parser
