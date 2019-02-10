@@ -2,4 +2,4 @@ coverage:
   notify:
     slack:
       default:
-        url: "secret:zYywUzGMz/9dYAYRAERx0RElhmPC0Js23X/hbdXeBFuEp9zbt2I5H2FPjL4QyXDGhGLTWXJkbk0bvOcK1DYEh0icJ2Mr4k1hxas2QJ+kKfq2sllwt4CPLCz+bTNFKQxAv1L1U0Gf04TILUXrmD8mY9WEUWrntyhkeArP/hlaRF8="
+        url: "secret:z2ih137BbhBMQmSAa8NXhR3pswp+30TlWp2MEihwq5LBhV1V1a+SH9BH4J1mzHQ6T6zWHNeYvkH5K+ndXTlVFCAf1NqI0gcZkZfCg1xqMTIh/lOEWqzxdpm8MGJ7VDxb+tLjccOzzBwL8oYhO7SI6kTi745b7c7pbqTsp3V1lVw="
