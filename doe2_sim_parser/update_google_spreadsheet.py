@@ -28,11 +28,12 @@ def get_credentials(credentials: Union[Dict, str, Path] = None):
         return ServiceAccountCredentials.from_json_keyfile_dict(
             credentials, SCOPES)
     elif not credentials:
-        credentials = json.loads(os.environ['GOOGLE_CREDENTIALS'])
+        credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+
         return ServiceAccountCredentials.from_json_keyfile_dict(
             credentials, SCOPES)
     else:
-        raise CredentialsMissingException('Credentials for Google is missing')
+        raise CredentialsMissingException("Credentials for Google is missing")
 
 
 def get_sheet(spreadsheet: Spreadsheet,
@@ -52,7 +53,8 @@ def get_sheet(spreadsheet: Spreadsheet,
     return sheet
 
 
-def update_report(spreadsheet_id: str, report: Report,
+def update_report(spreadsheet_id: str,
+                  report: Report,
                   credentials: Union[Dict, str] = None):
     creds = get_credentials(credentials)
 
