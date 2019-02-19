@@ -7,6 +7,8 @@ verify_ssl = true
 pytest = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 tox = "*"
 tox-pyenv = "*"
 
