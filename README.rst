@@ -10,6 +10,10 @@ DOE2-SIM-Parser
    :target: https://pypi.python.org/pypi/doe2-sim-parser
    :alt: Wheel Status
 
+.. image:: https://readthedocs.org/projects/doe2-sim-parser/badge/?version=latest
+   :target: https://doe2-sim-parser.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
 .. image:: https://travis-ci.org/grammy-jiang/doe2-sim-parser.svg
    :target: https://travis-ci.org/grammy-jiang/doe2-sim-parser
    :alt: Travis Status
