@@ -40,18 +40,36 @@ Overview
 
 This project provides the DOE2 sim report splitting and parsing:
 
-- split the sim report into pieces by the reports' names
-- parse the sim report from pure text to csv file (comma-separated values),
+* split the sim report into pieces by the reports' names
+* parse the sim report from pure text to csv file (comma-separated values),
   based on the requirement (configuration)
+* upload the parsed sim reports to Google Spreadsheet
 
 Requirements
 ============
 
+* Python 3.6+
+* Fully tested on Linux, but it should works on Windows, Mac OSX, BSD
+
 Installation
 ============
+
+The quick way:
+
+   pip install doe2-sim-parser
+
+For more details see the installation section in the documentation:
+https://doe2-sim-parser.readthedocs.io/en/latest/installation.html
 
 Documentation
 =============
 
+Documentation is available online at
+https://doe2-sim-parser.readthedocs.io/en/latest/ and in the ``docs`` directory.
+
 TODO
 ====
+
+* [ ] Add Microsoft Office 365 support for parsed sim reports uploading
+* [ ] Trigger Google Apps Script to do post-process after uploading the parsed
+  sim reports
