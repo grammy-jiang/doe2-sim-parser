@@ -1,3 +1,7 @@
+"""
+Write SIM reports into disk
+"""
+
 from collections import defaultdict
 from typing import Dict, List
 
@@ -7,7 +11,7 @@ from doe2_sim_parser.utils.data_types import SIM, Path, Report
 
 def write_sim(sim: SIM, folder: Path = None):
     """
-    write the entire sim report
+    Write the entire sim report
     :param sim: a SIM object
     :param folder:
     :return:

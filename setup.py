@@ -20,8 +20,15 @@ setup(
     ],
     cmdclass=versioneer.get_cmdclass(),
     # description='',
+    entry_point={
+        'console_scripts': ['doe2-sim-parser = doe2_sim_parser.cmdline:execute']
+    },
     # long_description=open().read(),
     include_package_data=True,
+    install_requires=[
+        'gspread',
+        'oauth2client'
+    ],
     license="BSD",
     maintainer="Grammy Jiang",
     maintainer_email="grammy.jiang@gmail.com",

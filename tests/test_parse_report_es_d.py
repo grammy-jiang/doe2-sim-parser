@@ -54,13 +54,4 @@ class ParseReportESDTest(TestCase):
         pass
 
     def test_parse_es_d(self):
-        es_d = parse_es_d(self.report)
-        with open("sample - ES-D.csv", "w") as f:
-            import csv
-
-            fwriter = csv.writer(f)
-
-            for line in es_d:
-                fwriter.writerow(line)
-
         self.assertSequenceEqual(parse_es_d(self.report), self.report_csv)

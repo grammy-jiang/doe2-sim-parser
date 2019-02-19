@@ -159,3 +159,5 @@ example_parse_result/
 /example_usage/target/
 
 Pipfile.lock
+/tests/sample/*.json
+/tests/sample/*.sim

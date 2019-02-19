@@ -11,6 +11,8 @@ tox = "*"
 tox-pyenv = "*"
 
 [packages]
+gspread = "*"
+oauth2client = "*"
 
 [requires]
 python_version = "3.7"
