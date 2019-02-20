@@ -1,6 +1,4 @@
-import json
 import os
-import pprint
 from itertools import chain
 from unittest import TestCase
 
@@ -10,12 +8,10 @@ from doe2_sim_parser.update_google_spreadsheet import (get_credentials,
                                                        update_report)
 from doe2_sim_parser.utils.data_types import Report
 
-pp = pprint.PrettyPrinter(indent=4)
-
 
 class TestUpdateGoogleSpreadsheet(TestCase):
     def setUp(self):
-        self.spreadsheet_id = "1hfmUv_DF7xCvKAlKgPAgncnBZmZEtLLibVe_7jYH-pY"
+        self.spreadsheet_id = os.environ["SPREADSHEET_ID"]
         self.reports = [
             Report(
                 type_="normal_report",
@@ -304,9 +300,7 @@ class TestUpdateGoogleSpreadsheet(TestCase):
         for report in self.reports:
             with self.subTest(report.name):
                 result = update_report(
-                    spreadsheet_id=self.spreadsheet_id,
-                    report=report,
-                )
+                    spreadsheet_id=self.spreadsheet_id, report=report)
 
                 sheet = ss.worksheet("{} - {}".format(report.code,
                                                       report.name))

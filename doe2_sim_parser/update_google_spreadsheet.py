@@ -53,9 +53,12 @@ def get_sheet(spreadsheet: Spreadsheet,
     return sheet
 
 
-def update_report(spreadsheet_id: str,
-                  report: Report,
+def update_report(report: Report,
+                  spreadsheet_id: str = None,
                   credentials: Union[Dict, str] = None):
+
+    if not spreadsheet_id:
+        spreadsheet_id = os.environ["SPREADSHEET_ID"]
     creds = get_credentials(credentials)
 
     gc = gspread.authorize(creds)

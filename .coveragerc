@@ -1,6 +1,5 @@
 [run]
 branch = true
-include = doe2_sim_parser/*
 omit =
     tests/*
     doe2_sim_parser/_version.py
