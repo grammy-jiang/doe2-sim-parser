@@ -109,7 +109,7 @@ class ParseSIMTest(TestCase):
             sim = split_sim(SAMPLE_SIM)
         self.assertEqual(
             cm.output,
-            ['INFO:doe2_sim_parser.split_sim:Receive sim: /home/grammy-jiang/PycharmProjects/doe2-sim-parser/tests/sample/sample.sim',
+            ['INFO:doe2_sim_parser.split_sim:Receive sim: {}'.format(SAMPLE_SIM),
              'INFO:doe2_sim_parser.split_sim:This sim has 459 normal reports, 0 hourly reports']
         )
 
