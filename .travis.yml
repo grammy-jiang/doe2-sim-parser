@@ -1,13 +1,27 @@
 language: python
 matrix:
   include:
-    - python: 3.6
-      env: TOXENV=py36
+  - python: 3.6
+    env: TOXENV=py36
+  # - python: 3.6
+  #   env: TOXENV=docs
+  # - python: 3.6
+  #   env: TOXENV=docs-links
 install:
-  - pip install -U tox codecov
+- pip install -U tox codecov
 script: tox
 after_success:
-  - codecov
+- codecov
 notifications:
   slack:
     secure: IgT5Fsg37mDySyqnG4n7fQOSL40TOcDOKjm/udVGi+PWYRR0n1CW12uMdXk69zMVsAr3aY/PqMMQquoaBeK10GiaMKeeSHy3+ZjFyeihbI1HivqPp2p2p6pYG+BK4Ndw7T5XHzxkBMznJdBcllsyedmEpHQRl1ez9HBBXboWCy4Pjdm+gl/PkvSVjb+Ug39m+plpH9epGTMH0qrqRpxw4zur7mlJWF6KHlV3Sf3R1KNBbivtMwlemtVnBEAUS14/qdcHPuPN1UeKgCmxJl6HLpYqgO75pmE1hcITx9ysV1zY5uMrGD7UzBBshfX05OJBjCEvXAeNAyOPk587GIwS470NGxQ7u+qYb0NZn2H5+eovl9wWhOLn5fGaCeGCKp0p0kEAlnLkRfz5vReoE7tHHka+T/zu1NvP+LVtzf9qkbLsqntcHuyHtQX4GUvffg2xwUVX9rnz6HLSdjYtmSfiv8fJn3YZ01OOpPkS+69sXgnxAj8cLzkgmt6Oz6Ka/F8PQpaWDpuRnPdEJgQYGkUtV6GoaWbFaUnXVuBY2FB5zTg2N4o/xFYQBuA4oK41HU4Gb8TpcX1wH4rJ9hKnU8WWcDfkAgbcdPjAW5L+6KUW7vJc6EF+Q9iWWb7I9pcGSqSKrUbYjklO7WgrYk506xoaetEb3kdU8LEd/Limg7fah2Q=
+deploy:
+  provider: pypi
+  distributions: "sdist bdist_wheel"
+  user: grammy.jiang
+  password:
+    secure: WJSuRp3AbXQEXWH2JBadFgAz7eGl3nJdqNpqu8htnA26yuK5MWZy+EuNmIniLhF+6UKcpi381U9BnPVc4ktKtFFY5GaUzJMW+QVqZFm7C6m5PqIzvZVh1vL672b2wVhXxTGk5+U/7UMY5jnzhWXuCMth4hP0NbfiBzHYFqQok2ft0nS5PEQxYHYRIrDr2WHC/59xk7mxRtw3l735BIBmSMTm3ciDhmZ43HMGX1ildnoKUvCgZNUqsgP1A4oe+uc6Nr8Eq+Juep4U2brN3Thb9MpM/fPXfsnsmIpp/wvStnu6g4xsiVnSklnqsdlA7qReyUJfGp9zWW8la6D/6zbRDwu63B1UJHdM+XSyOlRUUB+Us3EIQq8pVwKH9B9AH6F1T+Y1JCE4CIOtnn0Ad/au+wnJ68s/lCLQyBYwBcrkJYd/GTKtMB3ySb/MFwRqDGYrA6ioxw71b+Rp/4J0un+NKpIy9+hMzDYcKngGsBk+uzzyHaXTf+NXOW8h4V5IdAY0trmd7IHwEWCh3teu8MXfBvNHDpHA/VQWfIsHZpNnfNoMf/rJ19kWgboblnZFLkpodVfYx3ohawe8AG49fRM4buEd4Nx0yUdmiUhKm0MP/m0tsomDUw2MgaT/8CAM69eMv4RM5kskxyM3fVWiB8PVEvrtaVdeTDoVgc2LHrPpS5I=
+  on:
+    tags: true
+    condition: "$TOXENV == py36"
+  skip_existing: true
