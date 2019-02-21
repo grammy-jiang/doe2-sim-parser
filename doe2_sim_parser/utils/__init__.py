@@ -17,7 +17,7 @@ PATTERN_REPORT_HEAD = re.compile(
 
 PATTERN_REPORT_HOURLY_REPORT = re.compile(
     r"""
-HOURLY\sREPORT\-\sHourly\sReport\s+HVAC\s+WEATHER\sFILE\-\sEPW\sMACAU,\-,MAC\s+Pg:\s+\d+\s\-\s+\d
+HOURLY\sREPORT\-\sHourly\sReport\s+HVAC\s+WEATHER\sFILE-\s(?P<weather>.+?)\s+Pg:\s+\d+\s-\s+\d
 """,
     flags=re.VERBOSE,
 )

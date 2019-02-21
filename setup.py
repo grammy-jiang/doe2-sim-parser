@@ -5,6 +5,7 @@ import versioneer
 setup(
     name="DOE2-SIM-Parser",
     author="Grammy Jiang",
+    author_email="grammy.jiang@gmail.com",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Console",
