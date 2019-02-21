@@ -1,3 +1,5 @@
+import logging
+
 from collections import defaultdict
 from typing import Generator, List, Tuple
 
@@ -5,6 +7,9 @@ from doe2_sim_parser.utils import (
     PATTERN_REPORT_HEAD, PATTERN_REPORT_HOURLY_REPORT, PATTERN_REPORT_TITLE)
 from doe2_sim_parser.utils.convert_path import convert_path
 from doe2_sim_parser.utils.data_types import SIM, Path, Report
+
+logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.INFO)
 
 
 def parse_report(report: Tuple[str]) -> Report:
@@ -56,11 +61,17 @@ def split_sim(path: Path) -> SIM:
     :return: a SIM object contained all of the parsed reports with reports name
     and contents
     """
+    logger.info('Receive sim: %s', path)
+
     path: Path = convert_path(path)
     dict_ = defaultdict(list)
 
     for report in read_sim(path):  # type: Report
         dict_[report.type_].append(report)
+
+    logger.info('This sim has %s normal reports, %s hourly reports',
+                len(dict_["normal_report"]),
+                len(dict_["hourly_report"]))
 
     return SIM(
         path=path,

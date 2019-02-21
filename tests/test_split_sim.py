@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from unittest import TestCase
 
@@ -5,6 +6,7 @@ from doe2_sim_parser.split_sim import parse_report, read_sim, split_sim
 from doe2_sim_parser.utils.data_types import SIM, Report
 from tests import SAMPLE_SIM
 
+from doe2_sim_parser.split_sim import logger as split_sim_logger
 
 class ParseReportTest(TestCase):
     def test_parse_normal_report(self):
@@ -103,7 +105,14 @@ class ReadSIMTest(TestCase):
 
 class ParseSIMTest(TestCase):
     def test_parse_sim(self):
-        sim = split_sim(SAMPLE_SIM)
+        with self.assertLogs(logger=split_sim_logger, level=logging.INFO) as cm:
+            sim = split_sim(SAMPLE_SIM)
+        self.assertEqual(
+            cm.output,
+            ['INFO:doe2_sim_parser.split_sim:Receive sim: /home/grammy-jiang/PycharmProjects/doe2-sim-parser/tests/sample/sample.sim',
+             'INFO:doe2_sim_parser.split_sim:This sim has 459 normal reports, 0 hourly reports']
+        )
+
         self.assertIsInstance(sim, SIM)
         self.assertIsInstance(sim.path, Path)
         self.assertIsInstance(sim.normal_reports, tuple)
