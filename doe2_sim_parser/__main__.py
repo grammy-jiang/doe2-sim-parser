@@ -7,9 +7,8 @@ from doe2_sim_parser.parse_report_es_d import parse_es_d
 from doe2_sim_parser.split_sim import split_sim
 from doe2_sim_parser.update_google_spreadsheet import update_report
 
-logging.basicConfig()
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-logger.setLevel(level=logging.INFO)
 
 PARSERS = {"BEPS": parse_beps, "BEPU": parse_bepu, "ES-D": parse_es_d}
 

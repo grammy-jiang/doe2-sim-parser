@@ -9,7 +9,6 @@ from doe2_sim_parser.utils.convert_path import convert_path
 from doe2_sim_parser.utils.data_types import SIM, Path, Report
 
 logger = logging.getLogger(__name__)
-logger.setLevel(level=logging.INFO)
 
 
 def parse_report(report: Tuple[str]) -> Report:
