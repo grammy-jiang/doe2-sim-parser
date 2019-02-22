@@ -28,3 +28,10 @@ def write_sim(sim: SIM, folder: Path = None):
             sim_name=sim.path.stem, code=code, suffix=sim.path.suffix)
         with report_file.open(mode="w") as file:
             file.writelines(report)
+
+    hourly_report_file = folder / "{sim_name} - hourly report{suffix}".format(
+            sim_name=sim.path.stem, suffix=sim.path.suffix)
+
+    with hourly_report_file.open(mode="w") as file:
+        for report in sim.hourly_reports:
+            file.writelines(report.report)

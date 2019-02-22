@@ -26,5 +26,8 @@ class WriteSIMTest(TestCase):
                 sim_name=sim.path.stem,
                 code=report.code,
                 suffix=sim.path.suffix) for report in sim.normal_reports)
-
+        report_code.add(
+            convert_path(
+                self.test_dir) / "{sim_name} - hourly report{suffix}".format(
+                sim_name=sim.path.stem, suffix=sim.path.suffix))
         self.assertSetEqual(files, report_code)

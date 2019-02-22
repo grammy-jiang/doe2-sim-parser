@@ -5,12 +5,14 @@ from tests import SAMPLE_SIM_BEPU
 
 
 class ParseReportBEPUTest(TestCase):
+    maxDiff = None
+
     def setUp(self):
         with SAMPLE_SIM_BEPU.open() as f:
             self.report = f.readlines()
 
         self.report_csv = [
-            ["sample", "DOE-2.2-48z", "2/03/2019", "13:58:04", "BDL RUN", "1"],
+            ["sample", "DOE-2.2-48z", "2/22/2019", "23:17:20", "BDL RUN", "1"],
             [
                 "REPORT",
                 "BEPU",
@@ -109,5 +111,5 @@ class ParseReportBEPUTest(TestCase):
     def tearDown(self):
         pass
 
-    def test_parse_beps(self):
+    def test_parse_bepu(self):
         self.assertSequenceEqual(parse_bepu(self.report), self.report_csv)
