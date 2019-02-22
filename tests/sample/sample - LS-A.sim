@@ -1,4 +1,4 @@
-sample                                                                           DOE-2.2-48z    2/03/2019    13:58:04  BDL RUN  1
+sample                                                                           DOE-2.2-48z    2/22/2019    23:17:20  BDL RUN  1
                                                                                                                         
 REPORT- LS-A Space Peak Loads Summary                                         DESIGN DAY    WEATHER FILE- CHICAGO, IL         
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ SUM                                                 520.074                     
 
 
 BUILDING PEAK                                       384.835   SEP 21  5 PM   91.F  67.F         -82.735   DEC 21  7 AM   37.F  31.F
-sample                                                                           DOE-2.2-48z    2/03/2019    13:58:04  BDL RUN  1
+sample                                                                           DOE-2.2-48z    2/22/2019    23:17:20  BDL RUN  1
                                                                                                                         
 REPORT- LS-A Space Peak Loads Summary                                                       WEATHER FILE- CHICAGO, IL         
 ---------------------------------------------------------------------------------------------------------------------------------
