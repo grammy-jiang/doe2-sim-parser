@@ -10,7 +10,7 @@ def chunks(list_: Iterable, n: int) -> Generator[List, None, None]:
 
 PATTERN_REPORT_HEAD = re.compile(
     r"""
-^\x0c(?P<model>.+?)\s+(?P<engine>DOE-2\..+?)\s+(?P<date>[\/\d]+)\s+(?P<time>\d{2}:\d{2}:\d{2})\s+(?P<bdl_run>BDL\sRUN)\s+(?P<run_time>\d+)
+^\x0c(?P<model>.+?)\s+(?P<engine>DOE-2\.\d+\-[\da-z]+)\s+(?P<date>[\/\d]+)\s+(?P<time>\d{1,2}:\d{1,2}:\d{1,2})\s+BDL\sRUN\s*(?P<run_time>\d+)
 """,
     flags=re.VERBOSE,
 )

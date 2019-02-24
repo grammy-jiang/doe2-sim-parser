@@ -143,7 +143,7 @@ class ParseSIMTest(TestCase):
         self.assertEqual(
             cm.output,
             ['INFO:doe2_sim_parser.split_sim:Receive sim: {}'.format(SAMPLE_SIM),
-             'INFO:doe2_sim_parser.split_sim:This sim has 460 normal reports, 1095 hourly reports']
+             'INFO:doe2_sim_parser.split_sim:This sim has 944 normal reports, 1095 hourly reports']
         )
 
         self.assertIsInstance(sim, SIM)
