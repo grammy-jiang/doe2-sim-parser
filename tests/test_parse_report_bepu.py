@@ -12,7 +12,7 @@ class ParseReportBEPUTest(TestCase):
             self.report = f.readlines()
 
         self.report_csv = [
-            ["sample", "DOE-2.2-48z", "2/22/2019", "23:17:20", "BDL RUN", "1"],
+            ["sample", "DOE-2.2-48z", "2/22/2019", "23:17:20", "1"],
             [
                 "REPORT",
                 "BEPU",
