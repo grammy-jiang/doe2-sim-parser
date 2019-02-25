@@ -15,7 +15,7 @@ after_success:
 - |
   if $TRAVIS_TAG
   then
-  curl -X POST $DOCKER_TRIGGER_URg
+  curl -X POST $DOCKER_TRIGGER_URL
   fi
 notifications:
   slack:
