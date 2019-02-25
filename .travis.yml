@@ -13,7 +13,7 @@ script: tox
 after_success:
 - codecov
 - |
-  if $TRAVIS_TAG
+  if [[ ! -z $TRAVIS_TAG ]]
   then
   curl -X POST $DOCKER_TRIGGER_URL
   fi
