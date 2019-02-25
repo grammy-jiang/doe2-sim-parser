@@ -1,4 +1,4 @@
-sample                                                                           DOE-2.2-48z    2/22/2019    23:17:20  BDL RUN  1
+sample                                                                           DOE-2.2-48z    2/24/2019     4:28:19  BDL RUN  1
                                                                                                                         
 REPORT- ES-D Energy Cost Summary                                                            WEATHER FILE- CHICAGO, IL         
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -8,13 +8,13 @@ REPORT- ES-D Energy Cost Summary                                                
 UTILITY-RATE                       RESOURCE           METERS              UNITS/YR               ($)     ($/UNIT)   ALL YEAR?
 --------------------------------   ----------------   -----------   -------------------   ----------   ----------   ---------
 
-SCE GS-2 Elec Rate                 ELECTRICITY        EM1              211768. KWH            35072.       0.1656      YES
+SCE TOU-8A Elec Rate               ELECTRICITY        EM1             5020082. KWH           972198.       0.1937      YES
 
-SoCalGas GN-10 Gas Rate            NATURAL-GAS        FM1                3827. THERM           2617.       0.6837      YES
+SoCalGas GN-10 Gas Rate            NATURAL-GAS        FM1               46804. THERM          24958.       0.5332      YES
 
                                                                                           ==========
-                                                                                              37689.
+                                                                                             997156.
 
 
-                                                             ENERGY COST/GROSS BLDG AREA:      1.51
-                                                               ENERGY COST/NET BLDG AREA:      1.51
+                                                             ENERGY COST/GROSS BLDG AREA:      1.33
+                                                               ENERGY COST/NET BLDG AREA:      1.33

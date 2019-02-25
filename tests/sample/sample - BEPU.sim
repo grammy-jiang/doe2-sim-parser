@@ -1,4 +1,4 @@
-sample                                                                           DOE-2.2-48z    2/22/2019    23:17:20  BDL RUN  1
+sample                                                                           DOE-2.2-48z    2/24/2019     4:28:19  BDL RUN  1
                                                                                                                         
 REPORT- BEPU Building Utility Performance                                                   WEATHER FILE- CHICAGO, IL         
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -8,22 +8,33 @@ REPORT- BEPU Building Utility Performance                                       
               -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  --------
 
 EM1  ELECTRICITY     
-    KWH        69156.       0.   92425.       0.   25606.       0.    2116.   22465.       0.       0.       0.       0.   211768.
+    KWH      2482833.       0. 1388473.       0.  392865.   59242.  409115.  287555.       0.       0.       0.       0.  5020082.
 
 FM1  NATURAL-GAS     
-    THERM          0.       0.       0.    3417.       0.       0.       0.       0.       0.       0.     410.       0.     3827.
+    THERM          0.       0.       0.   36623.       0.       0.       0.       0.       0.       0.   10181.       0.    46804.
+
+Stea STEAM           
+    MBTU           0.       0.       0.    1426.       0.       0.       0.       0.       0.       0.       0.       0.     1426.
+
+Stea STEAM           
+    MBTU           0.       0.       0.       0.       0.       0.       0.       0.       0.       0.     699.       0.      699.
+
+Chil CHILLED-WATER   
+    MBTU           0.       0.       0.       0.    3311.       0.       0.       0.       0.       0.       0.       0.     3311.
 
 
 
 
-           TOTAL ELECTRICITY    211768. KWH         8.471 KWH     /SQFT-YR GROSS-AREA    8.471 KWH     /SQFT-YR NET-AREA
-           TOTAL NATURAL-GAS      3827. THERM       0.153 THERM   /SQFT-YR GROSS-AREA    0.153 THERM   /SQFT-YR NET-AREA
+           TOTAL ELECTRICITY   5020082. KWH         6.692 KWH     /SQFT-YR GROSS-AREA    6.692 KWH     /SQFT-YR NET-AREA
+           TOTAL NATURAL-GAS     46804. THERM       0.062 THERM   /SQFT-YR GROSS-AREA    0.062 THERM   /SQFT-YR NET-AREA
+           TOTAL STEAM            2125. MBTU        0.003 MBTU    /SQFT-YR GROSS-AREA    0.003 MBTU    /SQFT-YR NET-AREA
+           TOTAL CHILLED-WATE     3311. MBTU        0.004 MBTU    /SQFT-YR GROSS-AREA    0.004 MBTU    /SQFT-YR NET-AREA
 
 
-           PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE =  2.35
+           PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE =  9.30
            PERCENT OF HOURS ANY PLANT LOAD NOT SATISFIED                =  0.00
-           HOURS ANY ZONE ABOVE COOLING THROTTLING RANGE                =    59
-           HOURS ANY ZONE BELOW HEATING THROTTLING RANGE                =     6
+           HOURS ANY ZONE ABOVE COOLING THROTTLING RANGE                =     7
+           HOURS ANY ZONE BELOW HEATING THROTTLING RANGE                =   250
 
            NOTE:  ENERGY IS APPORTIONED HOURLY TO ALL END-USE CATEGORIES.
 

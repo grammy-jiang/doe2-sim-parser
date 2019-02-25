@@ -1,4 +1,4 @@
-sample                                                                           DOE-2.2-48z    2/22/2019    23:17:20  BDL RUN  1
+sample                                                                           DOE-2.2-48z    2/24/2019     4:28:19  BDL RUN  1
                                                                                                                         
 REPORT- BEPS Building Energy Performance                                                    WEATHER FILE- CHICAGO, IL         
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -8,23 +8,32 @@ REPORT- BEPS Building Energy Performance                                        
               -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  -------  --------
 
 EM1  ELECTRICITY     
-    MBTU        236.0      0.0    315.4      0.0     87.4      0.0      7.2     76.7      0.0      0.0      0.0      0.0     722.8
+    MBTU       8474.0      0.0   4739.0      0.0   1341.0    202.2   1396.0    981.4      0.0      0.0      0.0      0.0   17133.0
 
 FM1  NATURAL-GAS     
-    MBTU          0.0      0.0      0.0    341.7      0.0      0.0      0.0      0.0      0.0      0.0     41.0      0.0     382.7
+    MBTU          0.0      0.0      0.0   3662.0      0.0      0.0      0.0      0.0      0.0      0.0   1018.0      0.0    4680.4
+
+Stea STEAM           
+    MBTU          0.0      0.0      0.0   1426.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0    1426.1
+
+Stea STEAM           
+    MBTU          0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0    698.7      0.0     698.7
+
+Chil CHILLED-WATER   
+    MBTU          0.0      0.0      0.0      0.0   3311.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0    3311.2
               =======  =======  =======  =======  =======  =======  =======  =======  =======  =======  =======  =======  ========
 
-    MBTU        236.0      0.0    315.4    341.7     87.4      0.0      7.2     76.7      0.0      0.0     41.0      0.0    1105.5
+    MBTU       8474.0      0.0   4739.0   5088.0   4652.0    202.2   1396.0    981.4      0.0      0.0   1717.0      0.0   27250.0
 
 
 
-                   TOTAL SITE ENERGY      1105.48 MBTU     44.2 KBTU/SQFT-YR GROSS-AREA     44.2 KBTU/SQFT-YR NET-AREA
-                   TOTAL SOURCE ENERGY    2551.00 MBTU    102.0 KBTU/SQFT-YR GROSS-AREA    102.0 KBTU/SQFT-YR NET-AREA
+                   TOTAL SITE ENERGY     27249.80 MBTU     36.3 KBTU/SQFT-YR GROSS-AREA     36.3 KBTU/SQFT-YR NET-AREA
+                   TOTAL SOURCE ENERGY   61829.30 MBTU     82.4 KBTU/SQFT-YR GROSS-AREA     82.4 KBTU/SQFT-YR NET-AREA
 
-                   PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE =  2.35
+                   PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE =  9.30
                    PERCENT OF HOURS ANY PLANT LOAD NOT SATISFIED                =  0.00
-                   HOURS ANY ZONE ABOVE COOLING THROTTLING RANGE                =    59
-                   HOURS ANY ZONE BELOW HEATING THROTTLING RANGE                =     6
+                   HOURS ANY ZONE ABOVE COOLING THROTTLING RANGE                =     7
+                   HOURS ANY ZONE BELOW HEATING THROTTLING RANGE                =   250
 
                    NOTE:  ENERGY IS APPORTIONED HOURLY TO ALL END-USE CATEGORIES.
 

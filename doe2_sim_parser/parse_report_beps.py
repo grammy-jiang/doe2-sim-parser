@@ -2,32 +2,30 @@ import re
 from collections import namedtuple
 from typing import List
 
-from doe2_sim_parser.utils import chunks, parse_header
+from doe2_sim_parser.utils import PATTERN_METER, chunks, parse_header
 from doe2_sim_parser.utils.data_types import SliceFunc
 
 Meter = namedtuple("Meter", ["name", "type_"])
-Categories = [[
-    "METER",
-    "TYPE",
-    "UNIT",
-    "LIGHTS",
-    "TASK\nLIGHTS",
-    "MISC\nEQUIP",
-    "SPACE\nHEATING",
-    "SPACE\nCOOLING",
-    "HEAT\nREJECT",
-    "PUMPS\n& AUX",
-    "VENT\nFANS",
-    "REFRIG\nDISPLAY",
-    "HT PUMP\nSUPPLEN",
-    "DOMEST\nHOT WTR",
-    "EXT\nUSAGE",
-    "TOTAL",
-]]
-
-PATTERN_METER = re.compile(
-    r"""(?P<name>.+)\s{2}(?P<type_>ELECTRICITY|NATURAL\-GAS)""",
-    flags=re.VERBOSE)
+Categories = [
+    [
+        "METER",
+        "TYPE",
+        "UNIT",
+        "LIGHTS",
+        "TASK\nLIGHTS",
+        "MISC\nEQUIP",
+        "SPACE\nHEATING",
+        "SPACE\nCOOLING",
+        "HEAT\nREJECT",
+        "PUMPS\n& AUX",
+        "VENT\nFANS",
+        "REFRIG\nDISPLAY",
+        "HT PUMP\nSUPPLEN",
+        "DOMEST\nHOT WTR",
+        "EXT\nUSAGE",
+        "TOTAL",
+    ]
+]
 
 PATTERN_NO_BY_CATEGORY = re.compile(
     r"""
@@ -65,7 +63,8 @@ PATTER_TOTAL_ENERGY = re.compile(
 )
 
 PATTERN_PERCENT_AND_HOURS = re.compile(
-    r"""\s+(?P<name>.+?)\s+=\s+(?P<value>\d+[.\d]*)""", flags=re.VERBOSE)
+    r"""\s+(?P<name>.+?)\s+=\s+(?P<value>\d+[.\d]*)""", flags=re.VERBOSE
+)
 
 
 def parse_meter(line: str):
@@ -77,20 +76,32 @@ def parse_no_by_category(line: str):
 
 
 def parse_content(lines: List[str]):
-    return list(
-        map(
-            lambda x: [*parse_meter(x[0]), *parse_no_by_category(x[1])],
-            chunks(list(filter(lambda x: x.strip(), lines)), 2),
-        ))
+    _lines = list(filter(lambda x: x.strip(), lines))
+    content = []
+
+    for line in chunks(_lines, 2):
+        content.append([*parse_meter(line[0]), *parse_no_by_category(line[1])])
+
+    return content
 
 
 def parse_sum(lines: List[str]):
-    return list(map(lambda x: ["", "", *parse_no_by_category(x)], lines))
+    sum_ = []
+
+    for line in lines:
+        sum_.append(["", "", *parse_no_by_category(line)])
+
+    return sum_
 
 
 def parse_total(lines: List[str]):
-    return tuple(
-        map(lambda x: list(PATTER_TOTAL_ENERGY.search(x).groups()), lines))
+    total = []
+
+    for line in lines:
+        _ = PATTER_TOTAL_ENERGY.search(line).groups()
+        total.append(list(_))
+
+    return total
 
 
 def parse_percent(lines: List[str]):
@@ -108,16 +119,13 @@ def parse_percent(lines: List[str]):
 
 SLICES_BEPS = (
     SliceFunc(name="header", slice=slice(0, 3), func_parse=parse_header),
-    SliceFunc(
-        name="categories", slice=slice(5, 7), func_parse=lambda x: Categories),
+    SliceFunc(name="categories", slice=slice(5, 7), func_parse=lambda x: Categories),
+    # SliceFunc(name="contents", slice=slice(9, -14), func_parse=parse_contents),
     SliceFunc(name="content", slice=slice(9, -17), func_parse=parse_content),
     SliceFunc(name="summary", slice=slice(-15, -14), func_parse=parse_sum),
     SliceFunc(name="total", slice=slice(-11, -9), func_parse=parse_total),
     SliceFunc(name="percent", slice=slice(-8, -4), func_parse=parse_percent),
-    SliceFunc(
-        name="note",
-        slice=slice(-3, -2),
-        func_parse=lambda x: [[x[0].strip()]]),
+    SliceFunc(name="note", slice=slice(-3, -2), func_parse=lambda x: [[x[0].strip()]]),
 )
 
 

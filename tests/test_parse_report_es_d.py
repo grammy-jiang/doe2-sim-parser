@@ -5,16 +5,15 @@ from tests import SAMPLE_SIM_ES_D
 
 
 class ParseReportESDTest(TestCase):
+    maxDiff = None
+
     def setUp(self):
         with SAMPLE_SIM_ES_D.open() as f:
             self.report = f.readlines()
 
         self.report_csv = [
-            ["sample", "DOE-2.2-48z", "2/22/2019", "23:17:20", "1"],
-            [
-                "REPORT", "ES-D", "Energy Cost Summary", "WEATHER FILE",
-                "CHICAGO, IL"
-            ],
+            ["sample", "DOE-2.2-48z", "2/24/2019", "4:28:19", "1"],
+            ["REPORT", "ES-D", "Energy Cost Summary", "WEATHER FILE", "CHICAGO, IL"],
             [
                 "UTILITY-RATE",
                 "RESOURCE",
@@ -26,28 +25,28 @@ class ParseReportESDTest(TestCase):
                 "RATE USED\nALL YEAR?",
             ],
             [
-                "SCE GS-2 Elec Rate",
+                "SCE TOU-8A Elec Rate",
                 "ELECTRICITY",
                 "EM1",
-                "211768.",
+                "5020082.",
                 "KWH",
-                "35072.",
-                "0.1656",
+                "972198.",
+                "0.1937",
                 "YES",
             ],
             [
                 "SoCalGas GN-10 Gas Rate",
                 "NATURAL-GAS",
                 "FM1",
-                "3827.",
+                "46804.",
                 "THERM",
-                "2617.",
-                "0.6837",
+                "24958.",
+                "0.5332",
                 "YES",
             ],
-            ["", "", "", "", "", "37689."],
-            ["", "", "", "", "ENERGY COST/GROSS BLDG AREA", "1.51"],
-            ["", "", "", "", "ENERGY COST/NET BLDG AREA", "1.51"],
+            ["", "", "", "", "", "997156."],
+            ["", "", "", "", "ENERGY COST/GROSS BLDG AREA", "1.33"],
+            ["", "", "", "", "ENERGY COST/NET BLDG AREA", "1.33"],
         ]
 
     def tearDown(self):

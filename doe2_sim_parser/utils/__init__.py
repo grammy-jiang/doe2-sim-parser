@@ -35,3 +35,9 @@ def parse_header(lines: str):
         list(PATTERN_REPORT_HEAD.search(lines[0]).groupdict().values()),
         list(PATTERN_REPORT_TITLE.search(lines[2]).groupdict().values()),
     )
+
+
+PATTERN_METER = re.compile(
+    r"""(?P<name>.+?)\s+(?P<type_>ELECTRICITY|NATURAL-GAS|STEAM|CHILLED-WATER)""",
+    flags=re.VERBOSE,
+)
