@@ -74,6 +74,7 @@ https://doe2-sim-parser.readthedocs.io/en/latest/ and in the ``docs`` directory.
 TODO
 ====
 
+* [ ] Add Microsoft Office Excel creation for parsed sim reports
 * [ ] Add Microsoft Office 365 support for parsed sim reports uploading
 * [ ] Trigger Google Apps Script to do post-process after uploading the parsed
   sim reports
