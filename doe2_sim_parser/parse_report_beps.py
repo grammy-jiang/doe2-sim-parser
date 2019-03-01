@@ -6,7 +6,7 @@ from doe2_sim_parser.utils import PATTERN_METER, chunks, parse_header
 from doe2_sim_parser.utils.data_types import SliceFunc
 
 Meter = namedtuple("Meter", ["name", "type_"])
-Categories = [
+Cat = [
     [
         "METER",
         "TYPE",
@@ -44,7 +44,7 @@ PATTERN_NO_BY_CATEGORY = re.compile(
 (?P<DOMEST_HOT_WTR>[\d.]+)\s+
 (?P<EXT_USAGE>[\d.]+)\s+
 (?P<TOTAL>[\d.]+)
-   """,
+""",
     flags=re.VERBOSE,
 )
 
@@ -119,20 +119,21 @@ def parse_percent(lines: List[str]):
 
 SLICES_BEPS = (
     SliceFunc(name="header", slice=slice(0, 3), func_parse=parse_header),
-    SliceFunc(name="categories", slice=slice(5, 7), func_parse=lambda x: Categories),
-    # SliceFunc(name="contents", slice=slice(9, -14), func_parse=parse_contents),
+    SliceFunc(name="categories", slice=slice(5, 7), func_parse=lambda x: Cat),
     SliceFunc(name="content", slice=slice(9, -17), func_parse=parse_content),
     SliceFunc(name="summary", slice=slice(-15, -14), func_parse=parse_sum),
     SliceFunc(name="total", slice=slice(-11, -9), func_parse=parse_total),
     SliceFunc(name="percent", slice=slice(-8, -4), func_parse=parse_percent),
-    SliceFunc(name="note", slice=slice(-3, -2), func_parse=lambda x: [[x[0].strip()]]),
+    SliceFunc(name="note", slice=slice(-3, -2),
+              func_parse=lambda x: [[x[0].strip()]]),
 )
 
 
 def parse_beps(report: List[str]):
     beps = list()
-
     for slice_ in SLICES_BEPS:
-        beps.extend(slice_.func_parse(report[slice_.slice]))
+        lines = report[slice_.slice]
+        _ = slice_.func_parse(lines)
+        beps.extend(_)
 
     return beps
