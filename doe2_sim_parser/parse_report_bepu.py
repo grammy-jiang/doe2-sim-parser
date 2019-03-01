@@ -6,7 +6,6 @@ from doe2_sim_parser.parse_report_es_d import parse_header
 from doe2_sim_parser.utils import PATTERN_METER, chunks
 from doe2_sim_parser.utils.data_types import SliceFunc
 
-Meter = namedtuple("Meter", ["name", "type_"])
 Categories = [
     [
         "METER",

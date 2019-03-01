@@ -1,11 +1,9 @@
 import re
-from collections import namedtuple
 from typing import List
 
 from doe2_sim_parser.utils import PATTERN_METER, chunks, parse_header
 from doe2_sim_parser.utils.data_types import SliceFunc
 
-Meter = namedtuple("Meter", ["name", "type_"])
 Cat = [
     [
         "METER",

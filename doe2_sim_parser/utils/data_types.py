@@ -3,6 +3,7 @@ from pathlib import Path as _Path
 from typing import List, Tuple, TypeVar
 
 Path = TypeVar("Path", str, _Path)
+
 Report = namedtuple(
     "Report",
     [
@@ -12,6 +13,7 @@ Report = namedtuple(
         "report",  # type: List
     ],
 )
+
 SIM = namedtuple(
     "SIM",
     [
