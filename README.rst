@@ -6,7 +6,7 @@ DOE2-SIM-Parser
    :target: https://waffle.io/grammy-jiang/doe2-sim-parser 
    :alt: 'Waffle.io - Columns and their card count'
 
-
+:raw-html:`<br />`
 
 .. image:: https://img.shields.io/pypi/v/doe2-sim-parser.svg
    :target: https://pypi.python.org/pypi/doe2-sim-parser
