@@ -2,6 +2,11 @@
 DOE2-SIM-Parser
 ===============
 
+.. image:: https://badge.waffle.io/grammy-jiang/doe2-sim-parser.svg?columns=all 
+   :target: https://waffle.io/grammy-jiang/doe2-sim-parser 
+   :alt: 'Waffle.io - Columns and their card count'
+
+
 .. image:: https://img.shields.io/pypi/v/doe2-sim-parser.svg
    :target: https://pypi.python.org/pypi/doe2-sim-parser
    :alt: PyPI Version
@@ -37,7 +42,6 @@ DOE2-SIM-Parser
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: GNU General Public License v3.0
-
 
 Overview
 ========
