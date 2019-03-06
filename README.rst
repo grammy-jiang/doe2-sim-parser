@@ -6,19 +6,12 @@ DOE2-SIM-Parser
    :target: https://waffle.io/grammy-jiang/doe2-sim-parser 
    :alt: 'Waffle.io - Columns and their card count'
 
-:raw-html:`<br />`
+Overview
+========
 
-.. image:: https://img.shields.io/pypi/v/doe2-sim-parser.svg
-   :target: https://pypi.python.org/pypi/doe2-sim-parser
-   :alt: PyPI Version
 
-.. image:: https://img.shields.io/badge/wheel-yes-brightgreen.svg
-   :target: https://pypi.python.org/pypi/doe2-sim-parser
-   :alt: Wheel Status
 
-.. image:: https://readthedocs.org/projects/doe2-sim-parser/badge/?version=latest
-   :target: https://doe2-sim-parser.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation Status
+
 
 .. image:: https://travis-ci.org/grammy-jiang/doe2-sim-parser.svg
    :target: https://travis-ci.org/grammy-jiang/doe2-sim-parser
@@ -36,16 +29,10 @@ DOE2-SIM-Parser
    :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
    :alt: pyup
 
-.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/python-3-shield.svg
-   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
-   :alt: Python 3
 
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: GNU General Public License v3.0
-
-Overview
-========
 
 This project provides the DOE2 sim report splitting and parsing:
 
@@ -57,12 +44,24 @@ This project provides the DOE2 sim report splitting and parsing:
 Requirements
 ============
 
+.. image:: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/python-3-shield.svg
+   :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
+   :alt: Python 3
+   
 * Python 3.6+
 * Fully tested on Linux, but it should works on Windows, Mac OSX, BSD
 
 Installation
 ============
 
+.. image:: https://img.shields.io/pypi/v/doe2-sim-parser.svg
+   :target: https://pypi.python.org/pypi/doe2-sim-parser
+   :alt: PyPI Version
+
+.. image:: https://img.shields.io/badge/wheel-yes-brightgreen.svg
+   :target: https://pypi.python.org/pypi/doe2-sim-parser
+   :alt: Wheel Status
+   
 The quick way:
 
    pip install doe2-sim-parser
@@ -73,6 +72,10 @@ https://doe2-sim-parser.readthedocs.io/en/latest/installation.html
 Documentation
 =============
 
+.. image:: https://readthedocs.org/projects/doe2-sim-parser/badge/?version=latest
+   :target: https://doe2-sim-parser.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+   
 Documentation is available online at
 https://doe2-sim-parser.readthedocs.io/en/latest/ and in the ``docs`` directory.
 
