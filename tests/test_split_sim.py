@@ -2,11 +2,11 @@ import logging
 from pathlib import Path
 from unittest import TestCase
 
+from doe2_sim_parser.split_sim import logger as split_sim_logger
 from doe2_sim_parser.split_sim import parse_report, read_sim, split_sim
 from doe2_sim_parser.utils.data_types import SIM, Report
 from tests import SAMPLE_SIM
 
-from doe2_sim_parser.split_sim import logger as split_sim_logger
 
 class ParseReportTest(TestCase):
     def test_parse_normal_report(self):
@@ -120,7 +120,51 @@ class ParseReportTest(TestCase):
             "    SM      10.322       0.000     113.613       0.000       0.000       0.000      12.000       0.000       0.000       0.000",
             "    AV       0.430       0.000       4.734       0.000       0.000       0.000       0.500       0.000       0.000       0.000",
         )
-        for i, report in enumerate([report_1, report_2]):
+
+        report_3 = (
+            '\x0c01-baseline-000                                                                  DOE-2.2-48z    3/06/2019     4:53:39  BDL RUN  1',
+            '                                                                                                                        ',
+            'HOURLY REPORT- Hourly Report for EM2             HVAC                            WEATHER FILE- EPW Kunming,Yunnan,C Pg:    1 -  1',
+            '---------------------------------------------------------------------------------------------------------------------------------',
+            'MMDDHH   EM2 for     EM2 for     EM2 for     EM2 for     EM2 for     EM2 for     EM2 for     EM2 for     EM2 for     EM2 for ',
+            '         carpark     carpark     carpark     carpark     carpark     carpark     carpark     carpark     carpark     carpark ',
+            '            LIGHT        TASK       EQUIP        COOL        HEAT       HTREJ         AUX        VENT        REFG        SUPP',
+            '          END USE     END USE     END USE     END USE     END USE     END USE     END USE     END USE     END USE     END USE',
+            '         KWH         KWH         KWH         KWH         KWH         KWH         KWH         KWH         KWH         KWH     ',
+            '                                                                                                                             ',
+            '         ----( 1)    ----( 2)    ----( 3)    ----( 5)    ----( 4)    ----( 6)    ----( 7)    ----( 8)    ----( 9)    ----(10)',
+            ' 1 1 1     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 2     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 3     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 4     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 5     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 6     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 7     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 8     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 1 9     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 110     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 111     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 112     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 113     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 114     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 115     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 116     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 117     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 118     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 119     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 120     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 121     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 122     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 123     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            ' 1 124     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            '',
+            ' DAILY SUMMARY (JAN  1)',
+            '    MN     134.170       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            '    MX     134.170       0.000     398.013       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            '    SM    3220.080       0.000    6766.222       0.000       0.000       0.000       0.000       0.000       0.000       0.000',
+            '    AV     134.170       0.000     281.926       0.000       0.000       0.000       0.000       0.000       0.000       0.000')
+
+        for i, report in enumerate([report_1, report_2, report_3]):
             with self.subTest(i=i):
                 report_parsed = parse_report(report)
                 self.assertIsInstance(report_parsed, Report)
@@ -142,7 +186,8 @@ class ParseSIMTest(TestCase):
             sim = split_sim(SAMPLE_SIM)
         self.assertEqual(
             cm.output,
-            ['INFO:doe2_sim_parser.split_sim:Receive sim: {}'.format(SAMPLE_SIM),
+            ['INFO:doe2_sim_parser.split_sim:Receive sim: {}'.format(
+                SAMPLE_SIM),
              'INFO:doe2_sim_parser.split_sim:This sim has 944 normal reports, 1095 hourly reports']
         )
 
