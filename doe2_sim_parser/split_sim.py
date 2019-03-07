@@ -25,10 +25,19 @@ def parse_report(report: Tuple[str]) -> Report:
             code=result.group("code"),
             name=result.group("name").strip(),
             report=report,
+            report_no=None,
+            page_no=None,
         )
     elif PATTERN_REPORT_HOURLY_REPORT.search(report[2]):
+        result = PATTERN_REPORT_HOURLY_REPORT.search(report[2])
         return Report(
-            type_="hourly_report", code=None, name=None, report=report)
+            type_="hourly_report",
+            code=None,
+            name=result.group("name"),
+            report=report,
+            report_no=int(result.group("report_no")),
+            page_no=int(result.group("page_no"))
+        )
     else:
         raise ValueError(report)
 

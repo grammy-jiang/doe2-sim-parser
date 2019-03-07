@@ -11,6 +11,8 @@ Report = namedtuple(
         "code",  # only normal_report
         "name",  # only normal_report
         "report",  # type: List
+        "report_no",  # type: int # only for hourly_report
+        "page_no",  # type: int # only for hourly_report
     ],
 )
 

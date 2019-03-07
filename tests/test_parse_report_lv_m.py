@@ -12,7 +12,7 @@ class ParseReportESDTest(TestCase):
             self.report = f.readlines()
 
         self.report_csv = [
-            ["sample", "DOE-2.2-48z", "2/23/2019", "5:20:48", "1"],
+            ["sample", "DOE-2.2-48z", "2/24/2019", "4:28:19", "1"],
             [
                 "REPORT",
                 "LV-M",

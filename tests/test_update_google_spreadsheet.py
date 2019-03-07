@@ -293,6 +293,8 @@ class TestUpdateGoogleSpreadsheet(TestCase):
                     ["", "", "", "", "ENERGY COST/GROSS BLDG AREA", "1.51"],
                     ["", "", "", "", "ENERGY COST/NET BLDG AREA", "1.51"],
                 ],
+                report_no=None,
+                page_no=None,
             ),
         ]
 

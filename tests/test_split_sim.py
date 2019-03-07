@@ -170,7 +170,14 @@ class ParseReportTest(TestCase):
                 self.assertIsInstance(report_parsed, Report)
                 self.assertEqual(report_parsed.type_, "hourly_report")
                 self.assertEqual(report_parsed.code, None)
-                self.assertEqual(report_parsed.name, None)
+                self.assertIn(
+                    report_parsed.name,
+                    (
+                        "Hourly Report",
+                        "Hourly Report 2",
+                        "Hourly Report for EM2"
+                    )
+                )
                 self.assertEqual(report_parsed.report, report)
 
 
