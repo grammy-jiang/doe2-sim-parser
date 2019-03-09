@@ -54,7 +54,11 @@ def parse_single_hourly_report(report: Report):
 
 
 def parse_one_hourly_report(report: Dict[int, List[Report]]):
-    _ = report
+    for reports in zip(*report.values()):
+        for report in reports:
+            _ = parse_single_hourly_report(report)
+        _ = reports
+
     return _
 
 
@@ -71,9 +75,9 @@ def group_hourly_report(report: List[Report]):
 
 
 def parse_hourly_report(report: List[Report]):
-    hourly_report = group_hourly_report(report)
+    hourly_reports = group_hourly_report(report)
 
-    for report_name, reports in hourly_report.items():
+    for report_name, reports in hourly_reports.items():
         one_report = parse_one_hourly_report(reports)
 
         # for report_no, _reports in reports.items():
@@ -85,4 +89,4 @@ def parse_hourly_report(report: List[Report]):
     #     _ = slice_.func_parse(lines)
     #     hourly_report.extend(_)
 
-    return hourly_report
+    return hourly_reports

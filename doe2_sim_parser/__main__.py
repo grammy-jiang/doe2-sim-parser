@@ -19,8 +19,12 @@ def parse_args():
         description="Parse SIM reports, and upload the parsed reports to "
                     "Google Spreadsheet."
     )
-    parser.add_argument("-s", "--sim", help="the path to sim file")
-
+    parser.add_argument(
+        "-s", "--sim",
+        help="the path to sim file",
+        required=True,
+        type=str
+    )
     return parser.parse_args()
 
 
@@ -30,6 +34,8 @@ def main():
     logger.info("Receive sim: %s", args.sim)
 
     sim = split_sim(args.sim)
+
+    write_sim(sim)
 
     for report in sim.normal_reports:
         if report.code in PARSERS:
@@ -44,8 +50,6 @@ def main():
                 "{code} {name}".format(code=report.code, name=report.name),
             )
             update_report(report=report._replace(report=parsed_report))
-
-    write_sim(sim)
 
 
 if __name__ == "__main__":
