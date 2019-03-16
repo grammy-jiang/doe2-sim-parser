@@ -2,12 +2,12 @@ import pprint
 from unittest import TestCase
 
 from doe2_sim_parser import split_sim
-from doe2_sim_parser.parse_hourly_report import (parse_hourly_report,
-                                                 parse_single_hourly_report)
+from doe2_sim_parser.parse_hourly_report import parse_single_page_hourly_report, \
+    parse_hourly_report
 from doe2_sim_parser.utils.data_types import Report
 from tests import SAMPLE_SIM_HOURLY_REPORT
 
-pp = pprint.PrettyPrinter(indent=4)
+pp = pprint.PrettyPrinter(indent=4, width=180)
 
 
 class ParseHourlyReportTest(TestCase):
@@ -193,6 +193,10 @@ class ParseHourlyReportTest(TestCase):
     #     hourly_report_day = _parse_hourly_report(self.hourly_report_day)
     #
     #     pp.pprint(hourly_report_day)
+
+    # def test_parse_single_hourly_report(self):
+    #     hourly_report = parse_single_page_hourly_report(self.hourly_report_day)
+    #     pp.pprint(hourly_report)
 
     def test_parse_hourly_report(self):
         hourly_report = parse_hourly_report(self.hourly_report)
