@@ -4,7 +4,7 @@ from typing import List
 
 from doe2_sim_parser.parse_report_es_d import parse_header
 from doe2_sim_parser.utils import PATTERN_METER, chunks
-from doe2_sim_parser.utils.data_types import SliceFunc
+from doe2_sim_parser.utils.data_types import SliceFunc, Report
 
 Categories = [
     [
@@ -111,11 +111,11 @@ SLICES_BEPU = (
 )
 
 
-def parse_bepu(report: List[str]):
+def parse_bepu(report: List[Report]):
     bepu = list()
 
     for slice_ in SLICES_BEPU:
-        lines = slice_.func_parse(report[slice_.slice])
+        lines = slice_.func_parse(report[0].report[slice_.slice])
         bepu.extend(lines)
 
     return bepu

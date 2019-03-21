@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from doe2_sim_parser.parse_report_bepu import parse_bepu
+from doe2_sim_parser.utils.data_types import Report
 from tests import SAMPLE_SIM_BEPU
 
 
@@ -9,7 +10,14 @@ class ParseReportBEPUTest(TestCase):
 
     def setUp(self):
         with SAMPLE_SIM_BEPU.open() as f:
-            self.report = f.readlines()
+            self.report = Report(
+                type_='normal_report',
+                code='BEPU',
+                name='Building Utility Performance',
+                report=f.readlines(),
+                report_no=None,
+                page_no=None
+            )
 
         self.report_csv = [
             ["sample", "DOE-2.2-48z", "2/24/2019", "4:28:19", "1"],
@@ -187,4 +195,4 @@ class ParseReportBEPUTest(TestCase):
         pass
 
     def test_parse_bepu(self):
-        self.assertSequenceEqual(parse_bepu(self.report), self.report_csv)
+        self.assertSequenceEqual(parse_bepu([self.report]), self.report_csv)

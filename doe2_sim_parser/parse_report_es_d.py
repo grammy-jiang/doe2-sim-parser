@@ -2,7 +2,7 @@ import re
 from typing import List
 
 from doe2_sim_parser.utils import parse_header
-from doe2_sim_parser.utils.data_types import SliceFunc
+from doe2_sim_parser.utils.data_types import SliceFunc, Report
 
 Categories = [[
     "UTILITY-RATE",
@@ -68,9 +68,9 @@ SLICES_ES_D = (
 )
 
 
-def parse_es_d(report: List[str]):
+def parse_es_d(report: List[Report]):
     es_d = list()
     for slice_ in SLICES_ES_D:
-        es_d.extend(slice_.func_parse(report[slice_.slice]))
+        es_d.extend(slice_.func_parse(report[0].report[slice_.slice]))
 
     return es_d

@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from doe2_sim_parser.parse_report_es_d import parse_es_d
+from doe2_sim_parser.utils.data_types import Report
 from tests import SAMPLE_SIM_ES_D
 
 
@@ -9,7 +10,14 @@ class ParseReportESDTest(TestCase):
 
     def setUp(self):
         with SAMPLE_SIM_ES_D.open() as f:
-            self.report = f.readlines()
+            self.report = Report(
+                type_='normal_report',
+                code='ES-D',
+                name='Energy Cost Summary',
+                report=f.readlines(),
+                report_no=None,
+                page_no=None
+            )
 
         self.report_csv = [
             ["sample", "DOE-2.2-48z", "2/24/2019", "4:28:19", "1"],
@@ -53,4 +61,4 @@ class ParseReportESDTest(TestCase):
         pass
 
     def test_parse_es_d(self):
-        self.assertSequenceEqual(parse_es_d(self.report), self.report_csv)
+        self.assertSequenceEqual(parse_es_d([self.report]), self.report_csv)

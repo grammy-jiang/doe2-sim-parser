@@ -1,10 +1,12 @@
 import argparse
 import logging
+from collections import defaultdict
 
+from doe2_sim_parser.parse_hourly_report import parse_hourly_report
 from doe2_sim_parser.parse_report_beps import parse_beps
 from doe2_sim_parser.parse_report_bepu import parse_bepu
 from doe2_sim_parser.parse_report_es_d import parse_es_d
-from doe2_sim_parser.parse_hourly_report import parse_hourly_report
+from doe2_sim_parser.parse_report_ps_e import parse_ps_e
 from doe2_sim_parser.split_sim import split_sim
 from doe2_sim_parser.update_google_spreadsheet import update_report
 from doe2_sim_parser.utils.data_types import Report
@@ -17,6 +19,7 @@ PARSERS = {
     "BEPS": parse_beps,
     "BEPU": parse_bepu,
     "ES-D": parse_es_d,
+    "PS-E": parse_ps_e,
     "Hourly Report": parse_hourly_report,
 }
 
@@ -44,19 +47,31 @@ def main():
 
     write_sim(sim)
 
+    dict_sim_report = defaultdict(list)
     for report in sim.normal_reports:
-        if report.code in PARSERS:
+        dict_sim_report[report.code].append(report)
+
+    for code, reports in dict_sim_report.items():
+        if code in PARSERS:
             logger.info(
                 "Start parsing the sim report %s",
-                "{code} {name}".format(code=report.code, name=report.name),
+                "{code}".format(code=code),
             )
-            parsed_report = PARSERS[report.code](report.report)
-
+            parsed_report = PARSERS[code](reports)
             logger.info(
                 "Start update the parsed sim report %s on Google Spreadsheet.",
-                "{code} {name}".format(code=report.code, name=report.name),
+                "{code}".format(code=code),
             )
-            update_report(report=report._replace(report=parsed_report))
+            update_report(
+                report=Report(
+                    type_=reports[0].type_,
+                    code=reports[0].code,
+                    name=reports[0].name,
+                    report=parsed_report,
+                    report_no=None,
+                    page_no=None
+                )
+            )
 
     parsed_hourly_report = parse_hourly_report(sim.hourly_reports)
 

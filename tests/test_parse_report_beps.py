@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from doe2_sim_parser.parse_report_beps import parse_beps
+from doe2_sim_parser.utils.data_types import Report
 from tests import SAMPLE_SIM_BEPS
 
 
@@ -9,7 +10,14 @@ class ParseReportBEPSTest(TestCase):
 
     def setUp(self):
         with SAMPLE_SIM_BEPS.open() as f:
-            self.report = f.readlines()
+            self.report = Report(
+                type_='normal_reports',
+                code='BEPS',
+                name='Building Energy Performance',
+                report=f.readlines(),
+                report_no=None,
+                page_no=None
+            )
 
         self.report_csv = [
             ["sample", "DOE-2.2-48z", "2/24/2019", "4:28:19", "1"],
@@ -164,7 +172,8 @@ class ParseReportBEPSTest(TestCase):
                 "82.4",
                 "KBTU/SQFT-YR NET-AREA",
             ],
-            ["PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE", "9.30"],
+            ["PERCENT OF HOURS ANY SYSTEM ZONE OUTSIDE OF THROTTLING RANGE",
+             "9.30"],
             ["PERCENT OF HOURS ANY PLANT LOAD NOT SATISFIED", "0.00"],
             ["HOURS ANY ZONE ABOVE COOLING THROTTLING RANGE", "7"],
             ["HOURS ANY ZONE BELOW HEATING THROTTLING RANGE", "250"],
@@ -175,4 +184,4 @@ class ParseReportBEPSTest(TestCase):
         pass
 
     def test_parse_beps(self):
-        self.assertSequenceEqual(parse_beps(self.report), self.report_csv)
+        self.assertSequenceEqual(parse_beps([self.report]), self.report_csv)

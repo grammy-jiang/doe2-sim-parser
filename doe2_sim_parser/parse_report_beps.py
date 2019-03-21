@@ -2,7 +2,7 @@ import re
 from typing import List
 
 from doe2_sim_parser.utils import PATTERN_METER, chunks, parse_header
-from doe2_sim_parser.utils.data_types import SliceFunc
+from doe2_sim_parser.utils.data_types import SliceFunc, Report
 
 Cat = [
     [
@@ -127,10 +127,10 @@ SLICES_BEPS = (
 )
 
 
-def parse_beps(report: List[str]):
+def parse_beps(report: List[Report]):
     beps = list()
     for slice_ in SLICES_BEPS:
-        lines = report[slice_.slice]
+        lines = report[0].report[slice_.slice]
         _ = slice_.func_parse(lines)
         beps.extend(_)
 
