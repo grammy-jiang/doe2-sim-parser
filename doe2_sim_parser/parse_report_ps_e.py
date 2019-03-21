@@ -43,6 +43,17 @@ def get_slices(line: str) -> List[slice]:
     return slices
 
 
+def get_summery_slices() -> List[slice]:
+    slices = [slice(0, 12), ]
+
+    slices.extend([slice(12, 22), slice(22, 31), slice(31, 40), slice(40, 49),
+                   slice(49, 58), slice(58, 67), slice(67, 76), slice(76, 85),
+                   slice(85, 94), slice(94, 103), slice(103, 112),
+                   slice(112, 121), slice(121, 131)])
+
+    return slices
+
+
 def group_by_meter(reports: List[Report]) -> Dict[str, List[Report]]:
     dict_report = defaultdict(list)
     for report in reports:
@@ -67,4 +78,9 @@ def parse_ps_e(reports: List[Report]):
                 report_parsed.append([line[x].strip() for x in slices])
         ps_e_parse.extend(report_parsed)
 
+        summery_slices = get_summery_slices()
+        summery_parsed = [['Summery', *Cat]]
+        for line in reports_[1].report[34:]:
+            summery_parsed.append([line[x].strip() for x in summery_slices])
+        ps_e_parse.extend(summery_parsed)
     return ps_e_parse
