@@ -2,16 +2,8 @@
 DOE2-SIM-Parser
 ===============
 
-.. image:: https://badge.waffle.io/grammy-jiang/doe2-sim-parser.svg?columns=all 
-   :target: https://waffle.io/grammy-jiang/doe2-sim-parser 
-   :alt: 'Waffle.io - Columns and their card count'
-
 Overview
 ========
-
-
-
-
 
 .. image:: https://travis-ci.org/grammy-jiang/doe2-sim-parser.svg
    :target: https://travis-ci.org/grammy-jiang/doe2-sim-parser
