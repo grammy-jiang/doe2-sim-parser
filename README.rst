@@ -21,6 +21,13 @@ Overview
    :target: https://pyup.io/repos/github/grammy-jiang/doe2-sim-parser/
    :alt: pyup
 
+.. image:: https://api.codeclimate.com/v1/badges/631aabc96bb1dd6266f7/maintainability
+   :target: https://codeclimate.com/github/grammy-jiang/doe2-sim-parser/maintainability
+   :alt: Maintainability
+
+.. image:: https://api.codeclimate.com/v1/badges/631aabc96bb1dd6266f7/test_coverage
+   :target: https://codeclimate.com/github/grammy-jiang/doe2-sim-parser/test_coverage
+   :alt: Test Coverage
 
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
