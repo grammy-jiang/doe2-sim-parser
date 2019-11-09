@@ -73,21 +73,24 @@ def main():
                 )
             )
 
-    parsed_hourly_report = parse_hourly_report(sim.hourly_reports)
-    logger.info(
-        "Start update the parsed sim hourly report %s on Google Spreadsheet.",
-        "{code}".format(code="Hourly Report"),
-    )
-    update_report(
-        report=Report(
-            type_='hourly report',
-            code=None,
-            name='hourly report',
-            report=parsed_hourly_report,
-            report_no=0,
-            page_no=0
+    try:
+        parsed_hourly_report = parse_hourly_report(sim.hourly_reports)
+        logger.info(
+            "Start update the parsed sim hourly report %s on Google Spreadsheet.",
+            "{code}".format(code="Hourly Report"),
         )
-    )
+        update_report(
+            report=Report(
+                type_='hourly report',
+                code=None,
+                name='hourly report',
+                report=parsed_hourly_report,
+                report_no=0,
+                page_no=0
+            )
+        )
+    except Exception as exc:
+        logger.exception(exc)
 
 
 if __name__ == "__main__":
